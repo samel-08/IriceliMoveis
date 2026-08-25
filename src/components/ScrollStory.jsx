@@ -208,9 +208,9 @@ export default function ScrollStory() {
         .to(
             cabinetRef.current,
             {
-            xPercent: -55,
-            yPercent: -30,
-            scale: 1.08,
+            xPercent: -62,
+            yPercent: -68,
+            scale: 0.88,
             ease: "none",
             duration: 1,
             },
@@ -268,7 +268,7 @@ export default function ScrollStory() {
             ".story-cabinet__drawers > div",
             ],
             {
-            opacity: 0.08,
+            opacity: 0.03,
             ease: "none",
             duration: 0.6,
             },
