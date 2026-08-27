@@ -2,6 +2,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import BrandIntro from "./BrandIntro";
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ScrollStory() {
@@ -10,301 +12,326 @@ export default function ScrollStory() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-        const timeline = gsap.timeline({
+      const timeline = gsap.timeline({
         scrollTrigger: {
-            trigger: storyRef.current,
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 0.25,
+          trigger: storyRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 0.25,
         },
-        });
+      });
 
-        timeline
+      timeline
 
-        // =========================
-        // CENA 1 → CENA 2
-        // =========================
+        /* =========================
+           CENA 1 → CENA 2
+        ========================= */
 
+        // Armário vai para esquerda
         .to(cabinetRef.current, {
-            xPercent: -120,
-            scale: 0.9,
-            ease: "none",
-            duration: 1,
+          xPercent: -120,
+          scale: 0.9,
+          ease: "none",
+          duration: 1,
         })
 
+        // Cabideiro aparece
         .from(
-            ".story-cabinet__rail",
-            {
+          ".story-cabinet__rail",
+          {
             scaleX: 0,
             opacity: 0,
             transformOrigin: "left center",
             ease: "none",
             duration: 0.45,
-            },
-            0.12
+          },
+          0.12
         )
 
+        // Prateleiras aparecem
         .from(
-            ".story-cabinet__shelf",
-            {
+          ".story-cabinet__shelf",
+          {
             scaleX: 0,
             opacity: 0.15,
             transformOrigin: "left center",
             stagger: 0.08,
             ease: "none",
             duration: 0.55,
-            },
-            0.22
+          },
+          0.22
         )
 
-        // =========================
-        // CENA 2 → CENA 3
-        // =========================
+        /* =========================
+           CENA 2 → CENA 3
+        ========================= */
 
+        // Armário volta para direita
         .to(
-            cabinetRef.current,
-            {
+          cabinetRef.current,
+          {
             xPercent: 0,
             scale: 1,
             ease: "none",
             duration: 1,
-            },
-            1
+          },
+          1
         )
 
+        // Estrutura ganha presença
         .to(
-            ".story-cabinet",
-            {
+          ".story-cabinet",
+          {
             borderColor: "#e7d59c",
             ease: "none",
             duration: 0.45,
-            },
-            1.05
+          },
+          1.05
         )
 
+        // Divisórias ficam mais fortes
         .to(
-            ".story-cabinet__section",
-            {
+          ".story-cabinet__section",
+          {
             borderRightColor: "rgba(231, 213, 156, 0.95)",
             ease: "none",
             duration: 0.55,
-            },
-            1.08
+          },
+          1.08
         )
 
+        // Prateleiras ficam mais fortes
         .to(
-            ".story-cabinet__shelf",
-            {
+          ".story-cabinet__shelf",
+          {
             borderBottomColor: "rgba(231, 213, 156, 0.9)",
             ease: "none",
             duration: 0.55,
-            },
-            1.12
+          },
+          1.12
         )
 
+        // Gavetas entram
         .from(
-            ".story-cabinet__drawers > div",
-            {
+          ".story-cabinet__drawers > div",
+          {
             x: 45,
             opacity: 0,
             stagger: 0.08,
             ease: "none",
             duration: 0.55,
-            },
-            1.18
+          },
+          1.18
         )
 
+        // Cabideiro ganha destaque
         .to(
-            ".story-cabinet__rail",
-            {
+          ".story-cabinet__rail",
+          {
             backgroundColor: "#e7d59c",
             ease: "none",
             duration: 0.35,
-            },
-            1.22
+          },
+          1.22
         )
 
+        // Pequeno destaque externo
         .to(
-            cabinetRef.current,
-            {
+          cabinetRef.current,
+          {
             boxShadow: "0 0 0 1px rgba(231,213,156,0.08)",
             ease: "none",
             duration: 0.4,
-            },
-            1.35
+          },
+          1.35
         )
 
-        // =========================
-        // CENA 3 → CENA 4
-        // =========================
+        /* =========================
+           CENA 3 → CENA 4
+        ========================= */
 
+        // Armário vai novamente para esquerda
         .to(
-            cabinetRef.current,
-            {
+          cabinetRef.current,
+          {
             xPercent: -120,
             scale: 0.94,
             ease: "none",
             duration: 1,
-            },
-            2
+          },
+          2
         )
 
+        // Portas entram
         .fromTo(
-            ".story-cabinet__door",
-            {
+          ".story-cabinet__door",
+          {
             opacity: 0,
             scaleX: 0,
             transformOrigin: "left center",
-            },
-            {
+          },
+          {
             opacity: 0.94,
             scaleX: 1,
             stagger: 0.12,
             ease: "none",
             duration: 0.65,
-            },
-            2.12
+          },
+          2.12
         )
 
+        // Puxadores aparecem
         .to(
-            ".story-cabinet__handle",
-            {
+          ".story-cabinet__handle",
+          {
             opacity: 1,
             stagger: 0.08,
             ease: "none",
             duration: 0.35,
-            },
-            2.48
+          },
+          2.48
         )
 
+        // Interior fica mais discreto
         .to(
-            [
+          [
             ".story-cabinet__shelf",
             ".story-cabinet__rail",
             ".story-cabinet__drawers > div",
-            ],
-            {
+          ],
+          {
             opacity: 0.3,
             ease: "none",
             duration: 0.5,
-            },
-            2.4
+          },
+          2.4
         )
 
+        // Sensação de móvel final
         .to(
-            cabinetRef.current,
-            {
+          cabinetRef.current,
+          {
             boxShadow: "0 24px 70px rgba(0,0,0,0.22)",
             ease: "none",
             duration: 0.6,
-            },
-            2.55
+          },
+          2.55
         )
 
-        // =========================
-        // CENA 4 → CENA 5
-        // =========================
+        /* =========================
+           CENA 4 → CENA 5
+        ========================= */
 
+        // Armário centraliza e sobe
         .to(
-            cabinetRef.current,
-            {
+          cabinetRef.current,
+          {
             xPercent: -62,
             yPercent: -68,
             scale: 0.88,
             ease: "none",
             duration: 1,
-            },
-            3
+          },
+          3
         )
 
+        // Cabeçalho técnico desaparece
         .to(
-            ".story-blueprint-header",
-            {
+          ".story-blueprint-header",
+          {
             opacity: 0,
             y: -10,
             ease: "none",
             duration: 0.45,
-            },
-            3.1
+          },
+          3.1
         )
 
+        // Medida desaparece
         .to(
-            ".story-measure",
-            {
+          ".story-measure",
+          {
             opacity: 0,
             ease: "none",
             duration: 0.4,
-            },
-            3.15
+          },
+          3.15
         )
 
+        // Legendas inferiores desaparecem
         .to(
-            ".story-blueprint-footer",
-            {
+          ".story-blueprint-footer",
+          {
             opacity: 0,
             y: 10,
             ease: "none",
             duration: 0.45,
-            },
-            3.18
+          },
+          3.18
         )
 
+        // Moldura externa desaparece
         .to(
-            cabinetRef.current,
-            {
-                borderColor: "rgba(201,165,90,0)",
-                backgroundColor: "rgba(31,33,46,0)",
-                boxShadow: "none",
-                ease: "none",
-                duration: 0.55,
-            },
-            3.2
+          cabinetRef.current,
+          {
+            borderColor: "rgba(201,165,90,0)",
+            backgroundColor: "rgba(31,33,46,0)",
+            boxShadow: "none",
+            ease: "none",
+            duration: 0.55,
+          },
+          3.2
         )
 
+        // Interior técnico quase desaparece
         .to(
-            [
+          [
             ".story-cabinet__shelf",
             ".story-cabinet__rail",
             ".story-cabinet__drawers > div",
-            ],
-            {
+          ],
+          {
             opacity: 0.03,
             ease: "none",
             duration: 0.6,
-            },
-            3.25
+          },
+          3.25
         )
 
+        // Portas ficam mais sólidas
         .to(
-            ".story-cabinet__door",
-            {
+          ".story-cabinet__door",
+          {
             opacity: 1,
             background:
-                "linear-gradient(135deg, rgba(231,213,156,0.13), rgba(31,33,46,0.96))",
+              "linear-gradient(135deg, rgba(231,213,156,0.13), rgba(31,33,46,0.96))",
             ease: "none",
             duration: 0.6,
-            },
-            3.28
+          },
+          3.28
         )
 
+        // Puxadores ganham presença
         .to(
-            ".story-cabinet__handle",
-            {
+          ".story-cabinet__handle",
+          {
             opacity: 1,
             scaleY: 1.15,
             ease: "none",
             duration: 0.4,
-            },
-            3.35
+          },
+          3.35
         );
     }, storyRef);
 
     return () => ctx.revert();
-    }, []);
+  }, []);
 
   return (
     <section className="scroll-story" ref={storyRef}>
-      {/* ARMÁRIO QUE ACOMPANHA TODO O SCROLL */}
+      {/* ========================================
+          ARMÁRIO STICKY
+      ======================================== */}
       <div className="story-visual">
         <div className="story-cabinet-wrapper" ref={cabinetRef}>
           <div className="story-blueprint-header">
@@ -342,15 +369,15 @@ export default function ScrollStory() {
 
             {/* PORTAS */}
             <div className="story-cabinet__doors">
-              <div className="story-cabinet__door story-cabinet__door--left">
+              <div className="story-cabinet__door">
                 <span className="story-cabinet__handle" />
               </div>
 
-              <div className="story-cabinet__door story-cabinet__door--middle">
+              <div className="story-cabinet__door">
                 <span className="story-cabinet__handle" />
               </div>
 
-              <div className="story-cabinet__door story-cabinet__door--right">
+              <div className="story-cabinet__door">
                 <span className="story-cabinet__handle" />
               </div>
             </div>
@@ -364,12 +391,16 @@ export default function ScrollStory() {
         </div>
       </div>
 
-      {/* =========================
-          CENA 1
-      ========================== */}
+      {/* ========================================
+          CENA 1 — HERO
+      ======================================== */}
       <section className="story-scene story-scene--hero">
         <div className="story-copy story-copy--left">
-          <span className="eyebrow">MARCENARIA DE ALTO PADRÃO</span>
+          <BrandIntro />
+
+          <span className="eyebrow">
+            MARCENARIA DE ALTO PADRÃO
+          </span>
 
           <h1>
             Móveis sob medida
@@ -394,12 +425,14 @@ export default function ScrollStory() {
         </div>
       </section>
 
-      {/* =========================
-          CENA 2
-      ========================== */}
+      {/* ========================================
+          CENA 2 — IDEIA
+      ======================================== */}
       <section className="story-scene story-scene--idea">
         <div className="story-copy story-copy--right">
-          <span className="eyebrow">02 — DO PROJETO À REALIDADE</span>
+          <span className="eyebrow">
+            02 — DO PROJETO À REALIDADE
+          </span>
 
           <h2>
             Antes da madeira,
@@ -414,12 +447,14 @@ export default function ScrollStory() {
         </div>
       </section>
 
-      {/* =========================
-          CENA 3
-      ========================== */}
+      {/* ========================================
+          CENA 3 — PRECISÃO
+      ======================================== */}
       <section className="story-scene story-scene--measure">
         <div className="story-copy story-copy--left">
-          <span className="eyebrow">03 — PRECISÃO</span>
+          <span className="eyebrow">
+            03 — PRECISÃO
+          </span>
 
           <h2>
             Tudo começa
@@ -434,12 +469,14 @@ export default function ScrollStory() {
         </div>
       </section>
 
-      {/* =========================
-          CENA 4
-      ========================== */}
+      {/* ========================================
+          CENA 4 — ACABAMENTO
+      ======================================== */}
       <section className="story-scene story-scene--finish">
         <div className="story-copy story-copy--right">
-          <span className="eyebrow">04 — ACABAMENTO</span>
+          <span className="eyebrow">
+            04 — ACABAMENTO
+          </span>
 
           <h2>
             O projeto ganha
@@ -453,24 +490,27 @@ export default function ScrollStory() {
           </p>
         </div>
       </section>
-      {/* =========================
-                CENA 5
-        ========================== */}
-        <section className="story-scene story-scene--reality">
-            <div className="story-copy story-copy--center">
-                <span className="eyebrow">05 — REALIDADE</span>
 
-                <h2>
-                Do projeto
-                <br />
-                à realidade.
-                </h2>
+      {/* ========================================
+          CENA 5 — REALIDADE
+      ======================================== */}
+      <section className="story-scene story-scene--reality">
+        <div className="story-copy story-copy--center">
+          <span className="eyebrow">
+            05 — REALIDADE
+          </span>
 
-                <p>
-                O desenho deixa de ser apenas uma ideia e ganha forma no espaço.
-                </p>
-            </div>
-        </section>
+          <h2>
+            Do projeto
+            <br />
+            à realidade.
+          </h2>
+
+          <p>
+            O desenho deixa de ser apenas uma ideia e ganha forma no espaço.
+          </p>
+        </div>
+      </section>
     </section>
   );
 }

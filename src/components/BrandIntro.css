@@ -1,0 +1,70 @@
+.brand-intro {
+  position: relative;
+  width: min(100%, 620px);
+  min-height: 98px;
+  margin-bottom: 18px;
+}
+
+.brand-intro__layer {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  transition:
+    opacity 320ms ease,
+    transform 320ms ease;
+
+  pointer-events: none;
+}
+
+.brand-intro__layer.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.brand-intro__layer.is-hidden {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.brand-intro__stroke {
+  z-index: 2;
+}
+
+.brand-intro__shiny {
+  z-index: 3;
+}
+
+.brand-intro__shiny-text {
+  display: inline-block;
+
+  font-family: var(--font-serif);
+  font-size: clamp(38px, 5vw, 72px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .brand-intro {
+    width: min(100%, 520px);
+    min-height: 82px;
+    margin-bottom: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .brand-intro {
+    width: 100%;
+    min-height: 62px;
+    margin-bottom: 12px;
+  }
+
+  .brand-intro__shiny-text {
+    font-size: clamp(28px, 8vw, 46px);
+  }
+}
