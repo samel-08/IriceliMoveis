@@ -1246,3 +1246,138 @@ a {
   .projects-showcase__intro h2{font-size:clamp(44px,12vw,58px)}
   .projects-showcase__wall{height:500px}
 }
+/* MENU MOBILE */
+.navbar__menu,.navbar__mobile{display:none}
+
+.navbar__menu{
+  width:44px;
+  height:44px;
+  padding:10px;
+  border:0;
+  background:none;
+  cursor:pointer;
+}
+
+.navbar__menu span{
+  display:block;
+  width:22px;
+  height:1px;
+  margin:5px auto;
+  background:var(--gold-light);
+  transition:transform .3s ease,opacity .2s ease;
+}
+
+.navbar.is-open .navbar__menu span:nth-child(1){
+  transform:translateY(6px) rotate(45deg);
+}
+
+.navbar.is-open .navbar__menu span:nth-child(2){
+  opacity:0;
+}
+
+.navbar.is-open .navbar__menu span:nth-child(3){
+  transform:translateY(-6px) rotate(-45deg);
+}
+@media(max-width:900px){
+  .navbar{
+    grid-template-columns:1fr auto;
+    padding-inline:24px;
+  }
+
+  .navbar__links,
+  .navbar__cta{
+    display:none;
+  }
+
+  .navbar__brand img{
+    width:125px;
+    height:auto;
+  }
+
+  .navbar__menu{
+    display:block;
+    position:relative;
+    z-index:32;
+  }
+
+  .navbar__mobile{
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    z-index:30;
+    padding:30px 24px;
+    border-top:1px solid rgba(201,165,90,.15);
+    border-bottom:1px solid rgba(201,165,90,.25);
+    background:rgba(31,33,46,.98);
+    backdrop-filter:blur(18px);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-12px);
+    transition:.3s ease;
+  }
+
+  .navbar.is-open .navbar__mobile{
+    display:block;
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+
+  .navbar__mobile nav{
+    display:flex;
+    flex-direction:column;
+  }
+
+  .navbar__mobile nav a{
+    padding:17px 0;
+    border-bottom:1px solid rgba(201,165,90,.12);
+    color:var(--cream);
+    font-family:var(--font-serif);
+    font-size:26px;
+  }
+
+  .navbar__mobile-cta{
+    display:flex;
+    justify-content:space-between;
+    margin-top:25px;
+    padding:16px 18px;
+    background:var(--gold);
+    color:var(--navy);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+}
+@media(max-width:600px){
+  .navbar{
+    padding-inline:18px;
+  }
+
+  .navbar__brand img{
+    width:105px;
+  }
+
+  .navbar__mobile{
+    padding:24px 18px 28px;
+  }
+
+  .navbar__mobile nav a{
+    font-size:23px;
+    padding:15px 0;
+  }
+}
+.navbar--mobile{
+  display:none;
+}
+
+@media(max-width:900px){
+  .navbar--desktop{
+    display:none;
+  }
+
+  .navbar--mobile{
+    display:block;
+  }
+}

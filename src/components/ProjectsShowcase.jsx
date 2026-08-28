@@ -20,7 +20,7 @@ export default function ProjectsShowcase() {
 
       <div className="projects-showcase__wall">
         <DriftWall
-            columns={6}
+            columns={5}
             tileWidth={250}
             tileHeight={145}
             gap={8}
