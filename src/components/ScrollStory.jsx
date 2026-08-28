@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 import BrandIntro from "./BrandIntro";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -227,7 +226,7 @@ export default function ScrollStory() {
           cabinetRef.current,
           {
             xPercent: -62,
-            yPercent: -68,
+            yPercent: -54,
             scale: 0.88,
             ease: "none",
             duration: 1,

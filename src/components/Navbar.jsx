@@ -3,7 +3,7 @@ import logo from "../assets/brand/logo_removebg.png";
 export default function Navbar() {
   return (
     <header className="navbar">
-      <a href="#" className="navbar__brand">
+      <a href="#top" className="navbar__brand">
         <img src={logo} alt="Iriceili Móveis" />
       </a>
 

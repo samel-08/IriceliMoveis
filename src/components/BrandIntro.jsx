@@ -32,10 +32,9 @@ export default function BrandIntro() {
           ease="sine.inOut"
           trigger="mount"
           fillMode="fade"
-          fontSize={72}
-          fontWeight={600}
-          letterSpacing={1}
-          style={{ fontFamily: "var(--font-serif)" }}
+          fontSize={68}
+          fontWeight={500}
+          letterSpacing={0}
         />
       </div>
 

@@ -18,12 +18,24 @@ export default function FinalCTA() {
         </p>
 
         <a
-          className="final-cta__button"
+          className="final-cta__button pearl-cta"
           href="https://wa.me/5541988132385"
           target="_blank"
           rel="noreferrer"
         >
-          Solicitar orçamento pelo WhatsApp ↗
+          <span className="pearl-cta__wrap">
+            <span className="pearl-cta__content">
+              <span className="pearl-cta__icon pearl-cta__icon--default">
+                ↗
+              </span>
+
+              <span className="pearl-cta__icon pearl-cta__icon--hover">
+                ✦
+              </span>
+
+              Solicitar orçamento pelo WhatsApp
+            </span>
+          </span>
         </a>
       </div>
     </section>

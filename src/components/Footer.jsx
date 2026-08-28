@@ -1,3 +1,5 @@
+import BackToTop from "./BackToTop";
+
 export default function Footer() {
   return (
     <footer className="footer">
@@ -30,13 +32,6 @@ export default function Footer() {
             (41) 98813-2385
           </a>
 
-          <a
-            href="#top"
-            className="footer__back-top"
-            aria-label="Voltar ao topo"
-          >
-            ↑
-          </a>
         </div>
       </div>
 
@@ -44,6 +39,7 @@ export default function Footer() {
         <span>© 2026 IRICEILI MÓVEIS</span>
         <span>Todos os direitos reservados.</span>
       </div>
+      <BackToTop />
     </footer>
   );
 }

@@ -1,7 +1,7 @@
 .brand-intro {
   position: relative;
   width: min(100%, 620px);
-  min-height: 98px;
+  min-height: 88px;
   margin-bottom: 18px;
 }
 
@@ -13,22 +13,20 @@
   align-items: center;
   justify-content: flex-start;
 
-  transition:
-    opacity 320ms ease,
-    transform 320ms ease;
+  transition: opacity 220ms ease;
 
   pointer-events: none;
 }
 
 .brand-intro__layer.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .brand-intro__layer.is-hidden {
   opacity: 0;
-  transform: translateY(-4px);
-}
+  transform: none;
+} 
 
 .brand-intro__stroke {
   z-index: 2;
@@ -42,10 +40,11 @@
   display: inline-block;
 
   font-family: var(--font-serif);
-  font-size: clamp(38px, 5vw, 72px);
-  font-weight: 600;
+  font-size: 68px;
+  font-weight: 500;
   line-height: 1;
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
+
   white-space: nowrap;
 }
 
