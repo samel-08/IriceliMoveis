@@ -17,6 +17,7 @@ export default function ScrollStory() {
           start: "top top",
           end: "bottom bottom",
           scrub: 0.25,
+          invalidateOnRefresh: true
         },
       });
 
@@ -226,7 +227,7 @@ export default function ScrollStory() {
           cabinetRef.current,
           {
             xPercent: -62,
-            yPercent: -54,
+            yPercent: 25,
             scale: 0.88,
             ease: "none",
             duration: 1,
@@ -506,7 +507,7 @@ export default function ScrollStory() {
           </h2>
 
           <p>
-            O desenho deixa de ser apenas uma ideia e ganha forma no espaço.
+            O traço sai do papel e ganha existência.
           </p>
         </div>
       </section>
