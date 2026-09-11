@@ -3,6 +3,7 @@ import ScrollStory from "./components/ScrollStory";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
 import ProjectsShowcase from "./components/ProjectsShowcase";
+import CraftSections from "./components/CraftSections";
 
 import "./styles/global.css";
 
@@ -12,13 +13,12 @@ function App() {
       <div id="top" />
 
       <Navbar />
-
-      <ScrollStory />
-
-      <ProjectsShowcase />
-
-      <FinalCTA />
-
+      <main>
+        <ScrollStory />
+        <ProjectsShowcase />
+        <CraftSections />
+        <FinalCTA />
+      </main>
       <Footer />
     </>
   );

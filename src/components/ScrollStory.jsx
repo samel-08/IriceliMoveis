@@ -10,14 +10,31 @@ export default function ScrollStory() {
   const cabinetRef = useRef(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
+    const mm = gsap.matchMedia();
+    mm.add({
+      desktop: "(min-width: 1025px)",
+      tablet: "(min-width: 601px) and (max-width: 1024px)",
+      mobile: "(max-width: 600px)",
+      landscape: "(min-width: 501px) and (max-width: 1024px) and (max-height: 500px)",
+      reduced: "(prefers-reduced-motion: reduce)",
+    }, ({ conditions }) => {
+      const { mobile, reduced } = conditions;
+      const desktop = conditions.desktop || conditions.landscape;
+      const cabinet = cabinetRef.current;
+      // Pixel destinations derive from the bounded stage, including ultrawide screens.
+      const leftOffset = () => {
+        const pageX = parseFloat(getComputedStyle(storyRef.current.querySelector('.story-scene')).paddingLeft);
+        return pageX - cabinet.offsetLeft;
+      };
+      const centerOffset = () => storyRef.current.clientWidth / 2 - cabinet.offsetLeft - cabinet.offsetWidth / 2;
+      gsap.set(cabinet, { x: 0, y: 0, xPercent: 0, yPercent: desktop ? -50 : 0 });
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: storyRef.current,
           start: "top top",
           end: "bottom bottom",
-          scrub: 0.25,
-          invalidateOnRefresh: true
+          scrub: reduced ? true : 0.25,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -29,8 +46,8 @@ export default function ScrollStory() {
 
         // Armário vai para esquerda
         .to(cabinetRef.current, {
-          xPercent: -120,
-          scale: 0.9,
+          x: desktop && !reduced ? leftOffset : 0,
+          scale: reduced ? 1 : desktop ? 0.9 : 0.96,
           ease: "none",
           duration: 1,
         })
@@ -70,7 +87,7 @@ export default function ScrollStory() {
         .to(
           cabinetRef.current,
           {
-            xPercent: 0,
+            x: 0,
             scale: 1,
             ease: "none",
             duration: 1,
@@ -115,7 +132,7 @@ export default function ScrollStory() {
         .from(
           ".story-cabinet__drawers > div",
           {
-            x: 45,
+            x: reduced ? 0 : mobile ? 16 : 45,
             opacity: 0,
             stagger: 0.08,
             ease: "none",
@@ -154,8 +171,8 @@ export default function ScrollStory() {
         .to(
           cabinetRef.current,
           {
-            xPercent: -120,
-            scale: 0.94,
+            x: desktop && !reduced ? leftOffset : 0,
+            scale: reduced ? 1 : 0.94,
             ease: "none",
             duration: 1,
           },
@@ -226,9 +243,9 @@ export default function ScrollStory() {
         .to(
           cabinetRef.current,
           {
-            xPercent: -62,
-            yPercent: 25,
-            scale: 0.88,
+            x: desktop ? centerOffset : 0,
+            y: desktop ? () => -window.innerHeight * 0.23 : 0,
+            scale: desktop ? 0.78 : 0.92,
             ease: "none",
             duration: 1,
           },
@@ -322,9 +339,18 @@ export default function ScrollStory() {
           },
           3.35
         );
+      if (reduced) {
+        // Keep every assembly stage available without scrubbed travel or scaling.
+        timeline.progress(1);
+        timeline.scrollTrigger.kill();
+        gsap.set(cabinet, { x: 0, y: 0, scale: 1 });
+        gsap.set(".story-blueprint-header, .story-blueprint-footer, .story-measure", { opacity: 1, y: 0 });
+        gsap.set(".story-cabinet__door", { opacity: 0.15 });
+        gsap.set(".story-cabinet__shelf, .story-cabinet__rail, .story-cabinet__drawers > div", { opacity: 1 });
+      }
     }, storyRef);
 
-    return () => ctx.revert();
+    return () => mm.revert();
   }, []);
 
   return (
@@ -332,7 +358,7 @@ export default function ScrollStory() {
       {/* ========================================
           ARMÁRIO STICKY
       ======================================== */}
-      <div className="story-visual">
+      <div className="story-visual" aria-hidden="true">
         <div className="story-cabinet-wrapper" ref={cabinetRef}>
           <div className="story-blueprint-header">
             <span>ELEVAÇÃO / ARMÁRIO</span>
@@ -507,7 +533,7 @@ export default function ScrollStory() {
           </h2>
 
           <p>
-            O traço sai do papel e ganha existência.
+            O desenho deixa de ser apenas uma ideia e ganha forma no espaço.
           </p>
         </div>
       </section>

@@ -1,50 +1,26 @@
 import logo from "../assets/brand/logo_removebg.png";
-import StaggeredMenu from "./effects/StaggeredMenu";
-
-const menuItems = [
-  { label: "Início", ariaLabel: "Voltar ao início", link: "#top" },
-  { label: "Projetos", ariaLabel: "Ver projetos", link: "#projetos" },
-  { label: "Diferenciais", ariaLabel: "Ver diferenciais", link: "#diferenciais" },
-  { label: "Processo", ariaLabel: "Ver processo", link: "#processo" },
-  { label: "Contato", ariaLabel: "Entrar em contato", link: "#contato" }
-];
+import StaggeredMenu from "./StaggeredMenu";
+import { navigation } from "../data/site";
+import useActiveSection from "../hooks/useActiveSection";
 
 export default function Navbar() {
+  const activeSection = useActiveSection();
   return (
-    <>
-      <header className="navbar navbar--desktop">
-        <a href="#top" className="navbar__brand">
-          <img src={logo} alt="Iriceili Móveis" />
-        </a>
+    <header className="navbar">
+      <a href="#top" className="navbar__brand">
+        <img src={logo} alt="Iriceili Móveis" />
+      </a>
 
-        <nav className="navbar__links">
-          <a href="#projetos">Projetos</a>
-          <a href="#diferenciais">Diferenciais</a>
-          <a href="#processo">Processo</a>
-          <a href="#contato">Contato</a>
-        </nav>
+      <nav className="navbar__links" aria-label="Navegação principal">
+        {navigation.map(({ id, href, label }) => (
+          <a key={id} href={href} aria-current={activeSection === id ? "location" : undefined}>{label}</a>
+        ))}
+      </nav>
 
-        <a className="navbar__cta" href="#contato">
-          Solicitar orçamento
-        </a>
-      </header>
-
-      <div className="navbar--mobile">
-        <StaggeredMenu
-          position="right"
-          items={menuItems}
-          socialItems={[]}
-          displaySocials={false}
-          displayItemNumbering={true}
-          menuButtonColor="#E7D59C"
-          openMenuButtonColor="#E7D59C"
-          changeMenuColorOnOpen={true}
-          colors={["#C9A55A", "#2A3042"]}
-          logoUrl={logo}
-          accentColor="#C9A55A"
-          isFixed={true}
-        />
-      </div>
-    </>
+      <a className="navbar__cta" href="#contato">
+        Solicitar orçamento
+      </a>
+      <StaggeredMenu activeSection={activeSection} />
+    </header>
   );
 }

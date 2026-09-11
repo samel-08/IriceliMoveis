@@ -1,12 +1,13 @@
 import DriftWall from "./effects/DriftWall";
+import { projectImages } from "./projectsImages";
 
 export default function ProjectsShowcase() {
   return (
-    <section className="projects-showcase" id="projetos">
+    <section className="projects-showcase" id="projetos" aria-labelledby="projects-title">
       <div className="projects-showcase__intro">
-        <span className="eyebrow">07 — PROJETOS</span>
+        <span className="eyebrow">06 — PROJETOS</span>
 
-        <h2>
+        <h2 id="projects-title">
           Projetos que traduzem
           <br />
           o seu espaço.
@@ -20,7 +21,8 @@ export default function ProjectsShowcase() {
 
       <div className="projects-showcase__wall">
         <DriftWall
-            columns={5}
+            items={projectImages}
+            columns={7}
             tileWidth={250}
             tileHeight={145}
             gap={8}

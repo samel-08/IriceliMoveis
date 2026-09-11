@@ -1,48 +1,34 @@
 import BackToTop from "./BackToTop";
 import FoldText from "./effects/FoldText";
+import { navigation, phoneLabel, whatsappLink } from "../data/site";
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer__top">
         <div className="footer__brand">
-          <FoldText
-            text="IRICEILI MÓVEIS"
-            splitBy="char"
-            hinge="left"
-            duration={1.5}
-            stagger={0.035}
-            ease="power3.out"
-            perspective={700}
-            creaseShading={0.4}
-            trigger="scroll"
-            fontSize="clamp(22px,2vw,28px)"
-            fontWeight={400}
-            color="#F4EBD0"
-            className="footer__fold"
-        />
+          <strong><FoldText text="IRICEILI MÓVEIS" /></strong>
 
-  <p>Móveis planejados e sob medida.</p>
-</div>
+          <p>
+            Móveis planejados e sob medida.
+          </p>
+        </div>
 
-        <div className="footer__nav">
+        <nav className="footer__nav" aria-label="Navegação do rodapé">
           <span>NAVEGAÇÃO</span>
 
-          <a href="#projetos">Projetos</a>
-          <a href="#diferenciais">Diferenciais</a>
-          <a href="#processo">Processo</a>
-          <a href="#contato">Contato</a>
-        </div>
+          {navigation.map(({ id, href, label }) => <a key={id} href={href}>{label}</a>)}
+        </nav>
 
         <div className="footer__contact">
           <span>CONTATO</span>
 
           <a
-            href="https://wa.me/5541988132385"
+            href={whatsappLink()}
             target="_blank"
             rel="noreferrer"
           >
-            (41) 98813-2385
+            {phoneLabel}
           </a>
 
         </div>

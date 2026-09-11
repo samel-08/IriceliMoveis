@@ -10,6 +10,8 @@ import {
   useAnimationFrame,
   useMotionValue,
   useTransform,
+  useReducedMotion,
+  useInView,
 } from "motion/react";
 
 import "./ShinyText.css";
@@ -27,6 +29,9 @@ export default function ShinyText({
   direction = "left",
   delay = 0.3,
 }) {
+  const textRef = useRef(null);
+  const reduced = useReducedMotion();
+  const inView = useInView(textRef);
   const [isPaused, setIsPaused] =
     useState(false);
 
@@ -43,7 +48,7 @@ export default function ShinyText({
   const delayDuration = delay * 1000;
 
   useAnimationFrame((time) => {
-    if (disabled || isPaused) {
+    if (disabled || isPaused || reduced || !inView || document.hidden) {
       lastTimeRef.current = null;
       return;
     }
@@ -184,6 +189,7 @@ export default function ShinyText({
 
   return (
     <motion.span
+      ref={textRef}
       className={`shiny-text ${className}`}
       style={{
         ...gradientStyle,

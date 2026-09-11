@@ -15,8 +15,9 @@ export default function BrandIntro() {
   }, []);
 
   return (
-    <div className="brand-intro" aria-label="IRICEILI MÓVEIS">
+    <div className="brand-intro" role="img" aria-label="IRICEILI MÓVEIS">
       <div
+        aria-hidden="true"
         className={`brand-intro__layer brand-intro__stroke ${
           showShiny ? "is-hidden" : "is-visible"
         }`}
@@ -39,6 +40,7 @@ export default function BrandIntro() {
       </div>
 
       <div
+        aria-hidden="true"
         className={`brand-intro__layer brand-intro__shiny ${
           showShiny ? "is-visible" : "is-hidden"
         }`}
