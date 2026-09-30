@@ -57,7 +57,7 @@ a {
   margin-inline: var(--section-x);
   padding-inline: clamp(14px, 1.5vw, 28px);
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: 1fr auto;
   align-items: center;
   gap: clamp(14px, 2vw, 30px);
   border: 1px solid rgb(231 213 156 / 18%);
@@ -67,7 +67,7 @@ a {
 }
 
 .navbar__brand {
-  display: inline-flex;
+  display: none;
   align-items: center;
   justify-content: center;
   width: 44px;
@@ -104,6 +104,8 @@ a {
 .navbar__cta {
   justify-self: end;
 }
+
+.navbar__pill { min-width: 0; }
 
 /* Shared actions and labels */
 .eyebrow {
@@ -865,10 +867,10 @@ button { font: inherit; }
 /* Tablet and mobile: dedicated sticky drawing above the scrolling copy. */
 @media (max-width: 1024px) {
   :root { --navbar-height: 76px; }
-  .navbar { grid-template-columns: auto 1fr; margin-inline: var(--section-x); }
-  .navbar__links, .navbar__cta { display: none; }
-  .navbar__brand { grid-column: 2; grid-row: 1; justify-self: end; }
-  .navbar__brand img { width: 31px; height: 31px; }
+  .navbar { grid-template-columns: 1fr auto; margin-inline: var(--section-x); }
+  .navbar__pill, .navbar__cta { display: none; }
+  .navbar__brand { display: inline-flex; grid-column: 1; grid-row: 1; justify-self: start; width: 140px; height: 58px; border-left: 0; }
+  .navbar__brand img { width: 132px; height: 52px; object-fit: contain; object-position: left center; }
   .scroll-story { --drawing-height: min(36svh, 340px); }
   .story-visual { height: var(--drawing-height); z-index: 4; background: var(--navy); border-bottom: 1px solid var(--gold-24); }
   .story-cabinet-wrapper { top: 12px; left: 0; right: 0; margin-inline: auto; width: min(64%, 440px, calc((var(--drawing-height) - 96px) * 1.45)); padding: 12px; transform: none; }
@@ -891,7 +893,8 @@ button { font: inherit; }
 
 @media (max-width: 600px) {
   :root { --page-x: 18px; --navbar-height: 68px; }
-  .navbar__brand img { width: 28px; height: 28px; }
+  .navbar__brand { width: 118px; height: 54px; }
+  .navbar__brand img { width: 115px; height: 50px; }
   .scroll-story { --drawing-height: min(34svh, 270px); }
   .story-cabinet-wrapper { width: min(82%, 330px, calc((var(--drawing-height) - 80px) * 1.45)); padding: 9px; top: 10px; }
   .story-blueprint-header, .story-blueprint-footer, .story-measure { font-size: 6px; gap: 8px; letter-spacing: .06em; }

@@ -118,7 +118,7 @@ export default function AssemblySection() {
       <div className="assembly__stage" ref={stageRef}>
         <div className="assembly__copy">
           <span className="assembly__eyebrow">
-            03 — DO DESENHO À EXECUÇÃO
+            DO DESENHO À EXECUÇÃO
           </span>
 
           <span className="assembly__step">01 / PROJETO</span>

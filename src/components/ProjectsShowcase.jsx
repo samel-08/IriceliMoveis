@@ -26,7 +26,7 @@ export default function ProjectsShowcase() {
   return (
     <section className="projects-showcase" id="projetos" aria-labelledby="projects-title">
       <div className="projects-showcase__intro">
-        <span className="eyebrow">06 — PROJETOS</span>
+        <span className="eyebrow">PROJETOS</span>
 
         <h2 id="projects-title">
           Projetos que traduzem

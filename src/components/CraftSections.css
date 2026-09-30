@@ -9,10 +9,12 @@
     linear-gradient(155deg, var(--navy) 12%, #232737 54%, var(--navy) 92%);
 }
 
-.craft-sections::before { content: ""; position: absolute; z-index: -1; inset: 26px var(--section-x); border-inline: 1px solid rgb(231 213 156 / 9%); pointer-events: none; }
+.craft-sections::before { content: ""; position: absolute; z-index: 0; inset: 26px var(--section-x); border-inline: 1px solid rgb(231 213 156 / 9%); pointer-events: none; }
+.craft-sections__waves { position: absolute; inset: 0; z-index: 0; opacity: .72; pointer-events: none; }
 
 .craft-sections__section {
   position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   gap: clamp(32px, 5vw, 96px);
@@ -86,7 +88,7 @@
 
 .craft-sections__term {
   display: grid;
-  grid-template-columns: 24px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: baseline;
   gap: 12px;
   margin: 0;
@@ -105,7 +107,6 @@
   letter-spacing: 0.08em;
 }
 
-.craft-sections__section--process .craft-sections__number { color: var(--cream); font-family: var(--font-serif); font-size: clamp(30px, 3vw, 52px); line-height: .7; letter-spacing: -.06em; }
 .craft-sections__section--process .craft-sections__row { align-items: center; }
 
 .craft-sections__description {
@@ -143,7 +144,7 @@
   }
 
   .craft-sections__description {
-    padding-left: 36px;
+    padding-left: 0;
     font-size: 14px;
   }
 }

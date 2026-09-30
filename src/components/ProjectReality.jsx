@@ -2,7 +2,7 @@ export default function ProjectReality() {
   return (
     <section className="project-reality">
       <div className="project-reality__eyebrow">
-        02 — DO PROJETO À REALIDADE
+        DO PROJETO À REALIDADE
       </div>
 
       <div className="project-reality__grid">

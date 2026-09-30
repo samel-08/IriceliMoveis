@@ -5,7 +5,7 @@ export default function FinalCTA() {
   return (
     <section className="final-cta" id="contato" aria-labelledby="contact-title">
       <div className="final-cta__label">
-        09 — SEU PROJETO
+        SEU PROJETO
       </div>
 
       <div className="final-cta__content">

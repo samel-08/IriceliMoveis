@@ -458,7 +458,7 @@ export default function ScrollStory() {
       <section className="story-scene story-scene--idea">
         <div className="story-copy story-copy--right">
           <span className="eyebrow">
-            02 — DO PROJETO À REALIDADE
+            DO PROJETO À REALIDADE
           </span>
 
           <h2>
@@ -480,7 +480,7 @@ export default function ScrollStory() {
       <section className="story-scene story-scene--measure">
         <div className="story-copy story-copy--left">
           <span className="eyebrow">
-            03 — PRECISÃO
+            PRECISÃO
           </span>
 
           <h2>
@@ -502,7 +502,7 @@ export default function ScrollStory() {
       <section className="story-scene story-scene--finish">
         <div className="story-copy story-copy--right">
           <span className="eyebrow">
-            04 — ACABAMENTO
+            ACABAMENTO
           </span>
 
           <h2>
@@ -524,7 +524,7 @@ export default function ScrollStory() {
       <section className="story-scene story-scene--reality">
         <div className="story-copy story-copy--center">
           <span className="eyebrow">
-            05 — REALIDADE
+            REALIDADE
           </span>
 
           <h2>
