@@ -18,6 +18,19 @@ import kitchenDetail from "../assets/brand/IMG-20250725-WA0030.jpg";
 import glassCabinet from "../assets/brand/Screenshot_20260910_200854_Instagram.jpg";
 import { whatsappLink } from "../data/site";
 
+const wallAssetModules = import.meta.glob("../assets/brand/*.{jpg,jpeg,png}", {
+  eager: true,
+  import: "default",
+  query: "?url",
+});
+const nonPhotoWallAssets = new Set([
+  "logo.jpg",
+  "logo_leao.png",
+  "logo_removebg.png",
+  "IMG-20260820-WA0143.jpg",
+  "Sem título - 05 de agosto de 2026 às 12.51.23-1.png",
+]);
+
 const photo = (src, alt, position = "center") => ({ src, alt, position });
 
 // Descriptive names identify photographed environments, not client names.
@@ -98,3 +111,35 @@ export const projectImages = projects.map(({ id, title, category, cover }) => ({
   alt: cover.alt,
   objectPosition: cover.position,
 }));
+
+const projectPhotos = projects.flatMap(project =>
+  project.gallery.map(photo => ({
+    projectId: project.id,
+    title: project.title,
+    category: project.category,
+    image: photo.src,
+    alt: photo.alt,
+    objectPosition: photo.position,
+  })),
+);
+
+const knownPhotoByUrl = new Map(projectPhotos.map(photo => [photo.image, photo]));
+
+// The wall can use every real project photo without hard-coding a stale list.
+// Curated projects retain their existing title and multi-photo gallery on click.
+export const wallImages = Object.entries(wallAssetModules)
+  .map(([path, image]) => ({ sourceName: path.split("/").at(-1), image }))
+  .filter(({ sourceName }) => !nonPhotoWallAssets.has(sourceName))
+  .sort((first, second) => first.sourceName.localeCompare(second.sourceName))
+  .map(({ sourceName, image }) => {
+    const knownPhoto = knownPhotoByUrl.get(image);
+    return knownPhoto ? { ...knownPhoto, sourceName } : {
+      projectId: `portfolio-${sourceName}`,
+      title: "Projeto Iriceili",
+      category: "Marcenaria sob medida",
+      image,
+      alt: "Projeto de marcenaria sob medida da Iriceili Móveis",
+      objectPosition: "center",
+      sourceName,
+    };
+  });

@@ -116,13 +116,13 @@ const DriftWall = ({
   const fittedHeight = fittedWidth * tileHeight / tileWidth;
 
   const columnItems = useMemo(() => {
-    // With few images, rotate the same deck so aligned neighboring tiles differ.
-    return Array.from({ length: columnCount }, (_, column) => {
-      if (shuffledItems.length <= 4) {
-        return shuffledItems.map((_, row) => shuffledItems[(row + column) % shuffledItems.length]);
-      }
-      return column === 0 ? shuffledItems : shuffleItems(shuffledItems, column + 1);
+    // Give each column its own slice of the deck. Reusing the full list in
+    // every column made the same projects appear alongside one another.
+    const distributed = Array.from({ length: columnCount }, () => []);
+    shuffledItems.forEach((item, index) => {
+      distributed[index % columnCount].push(item);
     });
+    return distributed.map((column, index) => shuffleItems(column, index + 1));
   }, [shuffledItems, columnCount]);
 
   const columnMeta = useMemo(() => {
@@ -300,7 +300,7 @@ const DriftWall = ({
     };
     if (onItemSelect) {
       return <button key={id} type="button" tabIndex={duplicate ? -1 : 0}
-        aria-label={`Ver projeto: ${item.title}`} onClick={() => onItemSelect(item.projectId)} {...commonProps}>
+        aria-label={`Ver projeto: ${item.title}`} onClick={() => onItemSelect(item)} {...commonProps}>
         {inner}
       </button>;
     }

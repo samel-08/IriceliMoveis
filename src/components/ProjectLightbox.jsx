@@ -4,8 +4,11 @@ import "./ProjectLightbox.css";
 
 const swipeThreshold = 48;
 
-export default function ProjectLightbox({ project, onClose }) {
-  const [photoIndex, setPhotoIndex] = useState(0);
+export default function ProjectLightbox({ project, initialPhotoSrc, onClose }) {
+  const [photoIndex, setPhotoIndex] = useState(() => {
+    const matchingIndex = project.gallery.findIndex(photo => photo.src === initialPhotoSrc);
+    return matchingIndex >= 0 ? matchingIndex : 0;
+  });
   const closeButtonRef = useRef(null);
   const reduceMotion = useReducedMotion();
   const photo = project.gallery[photoIndex];

@@ -1,12 +1,27 @@
 import { AnimatePresence } from "motion/react";
 import { useState } from "react";
+import { whatsappLink } from "../data/site";
 import ProjectLightbox from "./ProjectLightbox";
 import DriftWall from "./effects/DriftWall";
-import { projectImages, projects } from "./projectsImages";
+import { projects, wallImages } from "./projectsImages";
 
 export default function ProjectsShowcase() {
-  const [selectedProjectId, setSelectedProjectId] = useState(null);
-  const selectedProject = projects.find(project => project.id === selectedProjectId);
+  const [selectedWallItem, setSelectedWallItem] = useState(null);
+  const selectedProject = selectedWallItem && (
+    projects.find(project => project.id === selectedWallItem.projectId) ?? {
+      id: selectedWallItem.projectId,
+      title: selectedWallItem.title,
+      category: selectedWallItem.category,
+      gallery: [{
+        src: selectedWallItem.image,
+        alt: selectedWallItem.alt,
+        position: selectedWallItem.objectPosition,
+      }],
+      cta: {
+        href: whatsappLink("Olá! Vi um projeto no site da Iriceili Móveis e gostaria de solicitar um orçamento."),
+      },
+    }
+  );
 
   return (
     <section className="projects-showcase" id="projetos" aria-labelledby="projects-title">
@@ -27,7 +42,7 @@ export default function ProjectsShowcase() {
 
       <div className="projects-showcase__wall">
         <DriftWall
-            items={projectImages}
+            items={wallImages}
             columns={7}
             tileWidth={250}
             tileHeight={145}
@@ -48,13 +63,13 @@ export default function ProjectsShowcase() {
             dim={0.72}
             grayscale={false}
             overlayColor="#1F212E"
-            paused={Boolean(selectedProject)}
-            onItemSelect={setSelectedProjectId}
+            paused={Boolean(selectedWallItem)}
+            onItemSelect={setSelectedWallItem}
         />
       </div>
 
       <AnimatePresence>
-        {selectedProject && <ProjectLightbox project={selectedProject} onClose={() => setSelectedProjectId(null)} />}
+        {selectedProject && <ProjectLightbox project={selectedProject} initialPhotoSrc={selectedWallItem.image} onClose={() => setSelectedWallItem(null)} />}
       </AnimatePresence>
     </section>
   );
