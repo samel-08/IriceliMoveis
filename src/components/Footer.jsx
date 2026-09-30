@@ -1,12 +1,14 @@
 import BackToTop from "./BackToTop";
 import FoldText from "./effects/FoldText";
 import { navigation, phoneLabel, whatsappLink } from "../data/site";
+import logoLion from "../assets/brand/logo_leao.png";
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer__top">
         <div className="footer__brand">
+          <img className="footer__lion" src={logoLion} alt="" />
           <strong><FoldText text="IRICEILI MÓVEIS" /></strong>
 
           <p>
@@ -38,6 +40,7 @@ export default function Footer() {
         <span>© 2026 IRICEILI MÓVEIS</span>
         <span>Todos os direitos reservados.</span>
       </div>
+      <span className="footer__watermark" aria-hidden="true">IRICEILI</span>
       <BackToTop />
     </footer>
   );

@@ -23,5 +23,5 @@
 .staggered-menu__cta { margin-top: 36px; font: inherit; font-size: 14px; color: #C9A55A; border-top: 1px solid #C9A55A; }
 .staggered-menu a:focus-visible, .staggered-menu button:focus-visible, .staggered-menu__trigger:focus-visible { outline: 2px solid #C9A55A; outline-offset: 4px; }
 @media (max-width: 1024px) {
-  .staggered-menu__trigger { display: inline-flex; align-items: center; gap: 12px; justify-self: end; grid-column: -2 / -1; grid-row: 1; }
+  .staggered-menu__trigger { display: inline-flex; align-items: center; gap: 12px; justify-self: start; grid-column: 1 / 2; grid-row: 1; }
 }

@@ -1,4 +1,5 @@
 import { whatsappLink } from "../data/site";
+import PearlButton from "./PearlButton";
 
 export default function FinalCTA() {
   return (
@@ -19,26 +20,14 @@ export default function FinalCTA() {
           para ele.
         </p>
 
-        <a
-          className="final-cta__button pearl-cta"
+        <PearlButton
+          className="final-cta__button"
           href={whatsappLink()}
           target="_blank"
           rel="noreferrer"
         >
-          <span className="pearl-cta__wrap">
-            <span className="pearl-cta__content">
-              <span className="pearl-cta__icon pearl-cta__icon--default" aria-hidden="true">
-                ↗
-              </span>
-
-              <span className="pearl-cta__icon pearl-cta__icon--hover" aria-hidden="true">
-                ✦
-              </span>
-
-              Solicitar orçamento pelo WhatsApp
-            </span>
-          </span>
-        </a>
+          Solicitar orçamento pelo WhatsApp
+        </PearlButton>
       </div>
     </section>
   );

@@ -1,3 +1,5 @@
+import PearlButton from "./PearlButton";
+
 export default function Hero() {
   return (
     <main className="hero">
@@ -16,9 +18,9 @@ export default function Hero() {
         </p>
 
         <div className="hero__actions">
-          <a href="#contato" className="button-primary">
+          <PearlButton href="#contato" className="hero__cta">
             Solicitar orçamento
-          </a>
+          </PearlButton>
 
           <a href="#projetos" className="button-link">
             Explorar projetos ↓
