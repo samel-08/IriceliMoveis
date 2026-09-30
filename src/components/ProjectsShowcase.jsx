@@ -1,7 +1,13 @@
+import { AnimatePresence } from "motion/react";
+import { useState } from "react";
+import ProjectLightbox from "./ProjectLightbox";
 import DriftWall from "./effects/DriftWall";
-import { projectImages } from "./projectsImages";
+import { projectImages, projects } from "./projectsImages";
 
 export default function ProjectsShowcase() {
+  const [selectedProjectId, setSelectedProjectId] = useState(null);
+  const selectedProject = projects.find(project => project.id === selectedProjectId);
+
   return (
     <section className="projects-showcase" id="projetos" aria-labelledby="projects-title">
       <div className="projects-showcase__intro">
@@ -42,8 +48,14 @@ export default function ProjectsShowcase() {
             dim={0.72}
             grayscale={false}
             overlayColor="#1F212E"
+            paused={Boolean(selectedProject)}
+            onItemSelect={setSelectedProjectId}
         />
       </div>
+
+      <AnimatePresence>
+        {selectedProject && <ProjectLightbox project={selectedProject} onClose={() => setSelectedProjectId(null)} />}
+      </AnimatePresence>
     </section>
   );
 }

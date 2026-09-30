@@ -45,6 +45,7 @@ const DriftWall = ({
   overlayColor = '#060010',
   className = '',
   onItemSelect,
+  paused = false,
   style
 }) => {
   const containerRef = useRef(null);
@@ -177,7 +178,7 @@ const DriftWall = ({
     trackRefs.current.forEach((el, c) => {
       if (el) el.style.transform = `translate3d(0, ${-(offsetsRef.current[c] ?? 0)}px, 0)`;
     });
-    if (reduced || !inView || !documentVisible || !containerWidth || !items.length) return;
+    if (reduced || paused || !inView || !documentVisible || !containerWidth || !items.length) return;
     const animate = ts => {
       if (lastTsRef.current === null) lastTsRef.current = ts;
       const dt = Math.min(0.05, Math.max(0, ts - lastTsRef.current) / 1000);
@@ -217,7 +218,7 @@ const DriftWall = ({
       rafRef.current = null;
       lastTsRef.current = null;
     };
-  }, [baseVelocities, columnMeta, pauseOnHover, fittedParallax, reduced, inView, documentVisible, containerWidth, items.length, applyPlaneTransform]);
+  }, [baseVelocities, columnMeta, pauseOnHover, fittedParallax, reduced, paused, inView, documentVisible, containerWidth, items.length, applyPlaneTransform]);
 
   const activate = useCallback((id, index) => {
     activeIdRef.current = id;
