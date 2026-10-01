@@ -15,7 +15,7 @@ import "./StrokeText.css";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function StrokeText({
-  text = "IRICEILI MÓVEIS",
+  text = "IRICELI MÓVEIS",
   strokeColor = "#C9A55A",
   fillColor = "#F4EBD0",
   strokeWidth = 1.3,

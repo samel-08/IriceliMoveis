@@ -58,7 +58,7 @@ export default function StaggeredMenu({ activeSection }) {
         onClick={(event) => { if (event.target === event.currentTarget) setOpen(false); }}>
         <div className="staggered-menu__panel">
           <div className="staggered-menu__header">
-            <a href="#top" onClick={() => setOpen(false)}><img src={logoLion} alt="Iriceili Móveis" /></a>
+            <a href="#top" onClick={() => setOpen(false)}><img src={logoLion} alt="Iriceli Móveis" /></a>
             <button type="button" onClick={() => setOpen(false)} aria-label="Fechar menu">Fechar &#215;</button>
           </div>
           <nav aria-label="Navegação mobile">

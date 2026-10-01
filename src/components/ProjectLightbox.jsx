@@ -62,7 +62,7 @@ export default function ProjectLightbox({ project, initialPhotoSrc, onClose }) {
         transition={{ duration: reduceMotion ? 0 : 0.48, ease: [0.22, 1, 0.36, 1] }}
       >
         <header className="project-lightbox__header">
-          <span>IRICEILI MÓVEIS / PROJETO</span>
+          <span>IRICELI MÓVEIS / PROJETO</span>
           <button ref={closeButtonRef} type="button" className="project-lightbox__close" onClick={onClose}>
             <span aria-hidden="true">×</span> Fechar
           </button>

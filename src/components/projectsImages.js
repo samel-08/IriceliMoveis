@@ -101,7 +101,7 @@ export const projects = collection.map(project => ({
   cover: project.gallery[0],
   cta: {
     label: "Quero um projeto parecido",
-    href: whatsappLink(`Olá! Vi o projeto "${project.title}" no site da Iriceili Móveis e gostaria de um projeto parecido.`),
+    href: whatsappLink(`Olá! Vi o projeto "${project.title}" no site da Iriceli Móveis e gostaria de um projeto parecido.`),
   },
 }));
 
@@ -135,10 +135,10 @@ export const wallImages = Object.entries(wallAssetModules)
     const knownPhoto = knownPhotoByUrl.get(image);
     return knownPhoto ? { ...knownPhoto, sourceName } : {
       projectId: `portfolio-${sourceName}`,
-      title: "Projeto Iriceili",
+      title: "Projeto Iriceli",
       category: "Marcenaria sob medida",
       image,
-      alt: "Projeto de marcenaria sob medida da Iriceili Móveis",
+      alt: "Projeto de marcenaria sob medida da Iriceli Móveis",
       objectPosition: "center",
       sourceName,
     };

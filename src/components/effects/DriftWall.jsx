@@ -331,7 +331,7 @@ const DriftWall = ({
       }}
       onPointerLeave={handlePointerLeaveWall}
       role="group"
-      aria-label="Projetos Iriceili"
+      aria-label="Projetos Iriceli"
     >
       <div ref={planeRef} className="drift-wall__plane">
         {columnItems.map((col, c) => {

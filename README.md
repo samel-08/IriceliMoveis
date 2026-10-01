@@ -1,6 +1,6 @@
-# Iriceili Móveis
+# Iriceli Móveis
 
-Landing page premium desenvolvida para a **Iriceili Móveis**, empresa especializada em móveis planejados e móveis sob medida.
+Landing page premium desenvolvida para a **Iriceli Móveis**, empresa especializada em móveis planejados e móveis sob medida.
 
 O projeto foi pensado para transmitir uma identidade sofisticada, arquitetônica e profissional, valorizando os projetos realizados pela empresa e conduzindo o visitante até o principal objetivo comercial do site: **solicitar um orçamento pelo WhatsApp**.
 

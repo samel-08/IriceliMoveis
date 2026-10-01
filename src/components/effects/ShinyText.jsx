@@ -17,7 +17,7 @@ import {
 import "./ShinyText.css";
 
 export default function ShinyText({
-  text = "IRICEILI MÓVEIS",
+  text = "IRICELI MÓVEIS",
   disabled = false,
   speed = 1.6,
   className = "",

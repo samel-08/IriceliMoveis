@@ -15,7 +15,7 @@ export default function BrandIntro() {
   }, []);
 
   return (
-    <div className="brand-intro" role="img" aria-label="IRICEILI MÓVEIS">
+    <div className="brand-intro" role="img" aria-label="IRICELI MÓVEIS">
       <div
         aria-hidden="true"
         className={`brand-intro__layer brand-intro__stroke ${
@@ -23,7 +23,7 @@ export default function BrandIntro() {
         }`}
       >
         <StrokeText
-          text="IRICEILI MÓVEIS"
+          text="IRICELI MÓVEIS"
           strokeColor="#C9A55A"
           fillColor="#F4EBD0"
           strokeWidth={1.3}
@@ -46,7 +46,7 @@ export default function BrandIntro() {
         }`}
       >
         <ShinyText
-          text="IRICEILI MÓVEIS"
+          text="IRICELI MÓVEIS"
           speed={1.6}
           delay={0.3}
           color="#C9A55A"

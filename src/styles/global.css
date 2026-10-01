@@ -29,12 +29,54 @@ body {
   margin: 0;
   min-width: 0;
   overflow-x: clip;
-  background: radial-gradient(circle at 72% 0, #30394b 0, var(--navy) 38%, #151823 100%);
+  background:
+    radial-gradient(circle at 72% 0, #30394b 0, var(--navy) 38%, #151823 100%);
   color: var(--cream);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+
+#root {
+  position: relative;
+  min-height: 100vh;
+  background: transparent;
+}
+
+.site-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0, rgba(49, 61, 85, 0.56), transparent 34%),
+    linear-gradient(180deg, rgba(18, 24, 35, 0.7), rgba(12, 17, 27, 0.82));
+}
+
+.site-background::before {
+  content: "";
+  position: absolute;
+  inset: -12% -8%;
+  background:
+    radial-gradient(72% 30% at 50% 100%, rgba(220, 198, 141, 0.18), transparent 50%),
+    radial-gradient(58% 24% at 20% 82%, rgba(110, 128, 168, 0.12), transparent 36%),
+    radial-gradient(58% 24% at 80% 82%, rgba(110, 128, 168, 0.12), transparent 36%),
+    repeating-radial-gradient(circle at 50% 100%, rgba(220, 198, 141, 0.12) 0 2px, transparent 2px 26px);
+  filter: blur(10px);
+  opacity: 0.8;
+}
+
+.site-background__waves {
+  position: absolute;
+  inset: 0;
+  opacity: 0.7;
+}
+
+.site-background__waves canvas {
+  filter: brightness(0.72) saturate(0.95);
+}
+
 img,
 svg {
   display: block;
@@ -51,17 +93,21 @@ a {
 
 /* Navigation */
 .navbar {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 20;
   min-height: var(--navbar-height);
   margin-inline: var(--section-x);
+  margin-top: 18px;
   padding-inline: clamp(14px, 1.5vw, 28px);
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
   gap: clamp(14px, 2vw, 30px);
-  border: 0;
-  background: linear-gradient(110deg, rgb(20 23 34 / 74%), rgb(42 48 66 / 42%));
+  border: 1px solid rgba(201, 165, 90, 0.28);
+  border-radius: 999px;
+  background: linear-gradient(110deg, rgba(18, 23, 35, 0.88), rgba(37, 44, 63, 0.7));
+  box-shadow: 0 22px 52px rgba(8, 10, 18, 0.28);
   backdrop-filter: blur(18px);
 }
 
@@ -135,9 +181,15 @@ a {
 /* Scroll story */
 .scroll-story {
   position: relative;
+  z-index: 1;
   max-width: 1920px;
   margin-inline: auto;
-  background: var(--navy);
+  background: transparent;
+}
+
+main {
+  position: relative;
+  z-index: 1;
 }
 
 .story-visual {
@@ -268,12 +320,13 @@ a {
   aspect-ratio: 1.45 / 1;
   display: grid;
   grid-template-columns: 1.12fr 0.95fr 1fr;
-  border: 1px solid var(--gold);
+  border: 1.5px solid rgba(201, 165, 90, 0.9);
   background: linear-gradient(
   135deg,
-  rgba(231, 213, 156, 0.025),
-  rgba(31, 33, 46, 0.02)
+  rgba(231, 213, 156, 0.06),
+  rgba(31, 33, 46, 0.08)
   );
+  box-shadow: inset 0 0 0 1px rgba(201, 165, 90, 0.2);
 }
 
 .story-cabinet::after {
@@ -289,7 +342,7 @@ a {
 
 .story-cabinet__section {
   position: relative;
-  border-right: 1px solid rgba(201, 165, 90, 0.8);
+  border-right: 1.5px solid rgba(201, 165, 90, 0.9);
 }
 
 .story-cabinet__section::after {
@@ -316,7 +369,7 @@ a {
 }
 
 .story-cabinet__shelf {
-  border-bottom: 1px solid rgba(201, 165, 90, 0.65);
+  border-bottom: 1.5px solid rgba(201, 165, 90, 0.9);
 }
 
 .story-cabinet__rail {
@@ -619,11 +672,15 @@ a {
 /* Footer */
 .footer {
   position: relative;
+  z-index: 2;
   isolation: isolate;
   padding: clamp(54px, 7vw, 110px) var(--section-x) 42px;
   overflow: hidden;
   border-top: 0;
-  background: radial-gradient(circle at 16% 100%, rgb(201 165 90 / 15%), transparent 28%), #10131d;
+  background:
+    linear-gradient(180deg, rgba(16, 19, 29, 0.94), rgba(16, 19, 29, 1)),
+    radial-gradient(circle at 16% 100%, rgb(201 165 90 / 15%), transparent 28%),
+    #10131d;
 }
 
 .footer__top {
@@ -809,15 +866,12 @@ a {
   position:relative;
   padding:clamp(64px, 7vw, 120px) var(--section-x);
   overflow:hidden;
-  background:var(--navy);
+  background: transparent;
 }
-.projects-showcase::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  inset-inline: var(--section-x);
-  height: 1px;
-  background: linear-gradient(90deg, var(--gold-40), transparent);
+.projects-showcase__intro,
+.projects-showcase__wall {
+  position: relative;
+  z-index: 1;
 }
 
 .projects-showcase__intro{

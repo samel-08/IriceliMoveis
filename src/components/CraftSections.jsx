@@ -1,11 +1,9 @@
-import { lazy, Suspense, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./CraftSections.css";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const GradientWaves = lazy(() => import("./effects/GradientWaves"));
 
 const differentials = [
   ["Sob medida", "Desenho exclusivo para o seu ambiente e a sua rotina."],
@@ -60,9 +58,6 @@ export default function CraftSections() {
 
   return (
     <div className="craft-sections" ref={rootRef}>
-      <Suspense fallback={null}>
-        <GradientWaves className="craft-sections__waves" horizonColor="#1F212E" waveColor="#2A3042" crestColor="#C9A55A" opacity={0.14} />
-      </Suspense>
       <section className="craft-sections__section" id="diferenciais" aria-labelledby="craft-differentials-title">
         <header className="craft-sections__intro" data-craft-reveal>
           <span className="craft-sections__label">DIFERENCIAIS</span>

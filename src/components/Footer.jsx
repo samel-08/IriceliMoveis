@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="footer__top">
         <div className="footer__brand">
           <img className="footer__lion" src={logoLion} alt="" />
-          <strong><FoldText text="IRICEILI MÓVEIS" /></strong>
+          <strong><FoldText text="IRICELI MÓVEIS" /></strong>
 
           <p>
             Móveis planejados e sob medida.
@@ -37,10 +37,10 @@ export default function Footer() {
       </div>
 
       <div className="footer__bottom">
-        <span>© 2026 IRICEILI MÓVEIS</span>
+        <span>© 2026 IRICELI MÓVEIS</span>
         <span>Todos os direitos reservados.</span>
       </div>
-      <span className="footer__watermark" aria-hidden="true">IRICEILI</span>
+      <span className="footer__watermark" aria-hidden="true">IRICELI</span>
       <BackToTop />
     </footer>
   );

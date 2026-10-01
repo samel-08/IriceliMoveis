@@ -14,14 +14,9 @@
   --dw-gray: 0;
   --dw-overlay: #060010;
   --dw-edge: 40%;
-  -webkit-mask-image:
-    radial-gradient(ellipse 78% 82% at 50% 46%, #000 var(--dw-edge), transparent 100%),
-    linear-gradient(to top, #000 var(--dw-edge), transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    radial-gradient(ellipse 78% 82% at 50% 46%, #000 var(--dw-edge), transparent 100%),
-    linear-gradient(to top, #000 var(--dw-edge), transparent 100%);
-  mask-composite: intersect;
+  background: transparent;
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 .drift-wall__plane {
@@ -63,6 +58,7 @@
   flex: 0 0 auto;
   outline: none;
   transform-style: preserve-3d;
+  border-radius: var(--dw-radius);
 }
 
 button.drift-wall__tile, a.drift-wall__tile { cursor: pointer; }
@@ -84,12 +80,12 @@ button.drift-wall__tile, a.drift-wall__tile { cursor: pointer; }
 
 .drift-wall__inner {
   position: absolute;
-  inset: calc(var(--dw-gap) / 2);
+  inset: 0;
   display: block;
   border-radius: var(--dw-radius);
   overflow: hidden;
   background: #0b0b12;
-  opacity: var(--dw-dim);
+  opacity: 1;
   transform: translateZ(0);
   pointer-events: none;
   transition:
@@ -102,9 +98,10 @@ button.drift-wall__tile, a.drift-wall__tile { cursor: pointer; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   image-orientation: from-image;
   display: block;
-  filter: grayscale(var(--dw-gray)) saturate(0.92);
+  filter: grayscale(var(--dw-gray)) saturate(1);
   transition: filter 0.42s cubic-bezier(0.22, 1, 0.36, 1);
   user-select: none;
   -webkit-user-drag: none;

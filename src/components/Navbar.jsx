@@ -10,7 +10,7 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <div className="navbar__pill"><PillNav logo={logo} items={navigation} activeId={activeSection} /></div>
-      <a href="#top" className="navbar__brand" aria-label="Iriceili Móveis - início"><img src={logo} alt="Iriceili Móveis" /></a>
+      <a href="#top" className="navbar__brand" aria-label="Iriceli Móveis - início"><img src={logo} alt="Iriceli Móveis" /></a>
       <PearlButton href="#contato" className="navbar__cta pearl-cta--compact">Solicitar orçamento</PearlButton>
       <StaggeredMenu activeSection={activeSection} />
     </header>

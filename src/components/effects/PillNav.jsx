@@ -29,8 +29,8 @@ export default function PillNav({ logo, items, activeId }) {
 
   return (
     <nav className="pill-nav" aria-label="Navegação principal">
-      <a className="pill-nav__logo" href="#top" aria-label="Iriceili Móveis - início">
-        <img src={logo} alt="Iriceili Móveis" />
+      <a className="pill-nav__logo" href="#top" aria-label="Iriceli Móveis - início">
+        <img src={logo} alt="Iriceli Móveis" />
       </a>
       <ul className="pill-nav__list">
         {items.map((item, index) => (

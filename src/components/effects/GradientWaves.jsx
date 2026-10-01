@@ -11,18 +11,24 @@ const vertex = `attribute vec2 position; void main() { gl_Position = vec4(positi
 const fragment = `precision highp float;
 uniform float uTime; uniform vec2 uResolution; uniform vec3 uHorizon; uniform vec3 uWave; uniform vec3 uCrest; uniform float uOpacity;
 void main() {
-  vec2 uv = gl_FragCoord.xy / uResolution.xy; uv.x *= uResolution.x / uResolution.y;
-  float wave = sin(uv.x * 7.0 + uTime * .22) * .12 + sin(uv.x * 2.7 - uTime * .16) * .14;
-  wave += sin((uv.y + wave) * 13.0 + uTime * .12) * .025;
-  float horizon = smoothstep(.12, .88, uv.y + wave);
-  float crest = smoothstep(.72, 1.08, uv.y + wave + sin(uv.x * 15.0 - uTime * .1) * .025);
+  vec2 uv = gl_FragCoord.xy / uResolution.xy;
+  uv.x *= uResolution.x / uResolution.y;
+
+  float waveA = sin((uv.x * 9.0) + uTime * 0.28) * 0.22;
+  float waveB = sin((uv.x * 3.0) - uTime * 0.18 + uv.y * 3.0) * 0.18;
+  float waveC = sin((uv.x * 16.0) + uv.y * 12.0 - uTime * 0.12) * 0.06;
+  float wave = waveA + waveB + waveC;
+
+  float band = smoothstep(0.08, 0.98, uv.y + wave * 0.8);
+  float crest = smoothstep(0.66, 1.1, uv.y + wave + sin(uv.x * 18.0 - uTime * 0.18) * 0.05);
+
   vec3 surface = mix(uWave, uCrest, crest);
-  vec3 outputColor = mix(uHorizon, surface, horizon);
-  float alpha = smoothstep(.02, .68, uv.y) * uOpacity;
+  vec3 outputColor = mix(uHorizon, surface, band);
+  float alpha = smoothstep(0.0, 0.9, uv.y + 0.12) * uOpacity;
   gl_FragColor = vec4(outputColor, alpha);
 }`;
 
-export default function GradientWaves({ className = "", horizonColor, waveColor, crestColor, opacity = 0.18 }) {
+export default function GradientWaves({ className = "", horizonColor, waveColor, crestColor, opacity = 0.75 }) {
   const ref = useRef(null);
 
   useEffect(() => {

@@ -18,7 +18,7 @@ export default function ProjectsShowcase() {
         position: selectedWallItem.objectPosition,
       }],
       cta: {
-        href: whatsappLink("Olá! Vi um projeto no site da Iriceili Móveis e gostaria de solicitar um orçamento."),
+        href: whatsappLink("Olá! Vi um projeto no site da Iriceli Móveis e gostaria de solicitar um orçamento."),
       },
     }
   );
