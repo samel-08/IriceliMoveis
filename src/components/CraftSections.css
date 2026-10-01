@@ -9,7 +9,7 @@
     linear-gradient(155deg, var(--navy) 12%, #232737 54%, var(--navy) 92%);
 }
 
-.craft-sections::before { content: ""; position: absolute; z-index: 0; inset: 26px var(--section-x); border-inline: 1px solid rgb(231 213 156 / 9%); pointer-events: none; }
+.craft-sections::before { display: none; }
 .craft-sections__waves { position: absolute; inset: 0; z-index: 0; opacity: .72; pointer-events: none; }
 
 .craft-sections__section {
@@ -27,12 +27,7 @@
 }
 
 .craft-sections__section--process::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  inset-inline: var(--section-x);
-  height: 1px;
-  background: var(--gold-24);
+  display: none;
 }
 
 .craft-sections__intro {
@@ -71,7 +66,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--gold-40);
+  border-top: 0;
 }
 
 .craft-sections__row {
@@ -80,7 +75,7 @@
   align-items: baseline;
   gap: 20px;
   padding-block: clamp(18px, 1.6vw, 28px);
-  border-bottom: 1px solid var(--gold-24);
+  border-bottom: 0;
   transition: padding .3s ease, background-color .3s ease;
 }
 

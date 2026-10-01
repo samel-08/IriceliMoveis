@@ -60,8 +60,7 @@ a {
   grid-template-columns: 1fr auto;
   align-items: center;
   gap: clamp(14px, 2vw, 30px);
-  border: 1px solid rgb(231 213 156 / 18%);
-  border-top: 0;
+  border: 0;
   background: linear-gradient(110deg, rgb(20 23 34 / 74%), rgb(42 48 66 / 42%));
   backdrop-filter: blur(18px);
 }
@@ -481,14 +480,12 @@ a {
     linear-gradient(130deg, #171a26, var(--navy) 62%, #252b3a);
 }
 
-.final-cta::before,
 .final-cta::after {
   content: "";
   position: absolute;
   z-index: -1;
   pointer-events: none;
 }
-.final-cta::before { inset: 18px var(--section-x); border: 1px solid rgb(231 213 156 / 14%); }
 .final-cta::after { width: 45vw; height: 45vw; right: -20vw; bottom: -30vw; border: 1px solid rgb(231 213 156 / 17%); border-radius: 50%; }
 
 .final-cta__label {
@@ -500,9 +497,7 @@ a {
 
 .final-cta__content {
   padding: clamp(22px, 3.5vw, 54px);
-  border: 1px solid rgb(231 213 156 / 16%);
-  background: linear-gradient(145deg, rgb(42 48 66 / 45%), rgb(20 23 34 / 24%));
-  backdrop-filter: blur(12px);
+  background: linear-gradient(145deg, rgb(42 48 66 / 32%), rgb(20 23 34 / 12%));
   max-width: 900px;
   min-width: 0;
 }
@@ -627,7 +622,7 @@ a {
   isolation: isolate;
   padding: clamp(54px, 7vw, 110px) var(--section-x) 42px;
   overflow: hidden;
-  border-top: 1px solid rgba(201, 165, 90, 0.3);
+  border-top: 0;
   background: radial-gradient(circle at 16% 100%, rgb(201 165 90 / 15%), transparent 28%), #10131d;
 }
 
@@ -686,7 +681,7 @@ a {
   padding-top: 14px;
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid rgba(201, 165, 90, 0.14);
+  border-top: 0;
   color: rgba(244, 235, 208, 0.42);
   font-size: 8px;
   letter-spacing: 0.12em;
