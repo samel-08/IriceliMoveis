@@ -903,6 +903,55 @@ main {
   width:100%;
   height:clamp(480px, 72svh, 960px);
 }
+
+.projects-showcase__more {
+  margin-top: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.projects-showcase__more p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.projects-showcase__more a {
+  position: relative;
+  min-height: 44px;
+  padding: 10px 0 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  color: var(--gold-light);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.projects-showcase__more a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  left: 0;
+  height: 1px;
+  background: var(--gold-60);
+  transform: scaleX(.3);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+
+.projects-showcase__more a span { font-size: 16px; transition: transform 220ms ease; }
+
+@media (hover: hover) and (pointer: fine) {
+  .projects-showcase__more a:hover { color: var(--cream); }
+  .projects-showcase__more a:hover::after { transform: scaleX(1); }
+  .projects-showcase__more a:hover span { transform: translate(3px, -2px); }
+}
 /* Shared sizing and keyboard access */
 :focus-visible { outline: 2px solid var(--gold-light); outline-offset: 5px; }
 button { font: inherit; }
@@ -960,7 +1009,12 @@ button { font: inherit; }
   .final-cta__button { width: 100%; }
   .pearl-cta__content { letter-spacing: .025em; line-height: 1.5; }
   .projects-showcase__intro { margin-bottom: 32px; }
-  .projects-showcase__wall { height: clamp(420px, 65svh, 640px); }
+  .projects-showcase__wall { height: clamp(340px, 48svh, 430px); }
+  .projects-showcase__more { align-items: stretch; flex-direction: column; gap: 16px; margin-top: 20px; }
+  .projects-showcase__more a { align-self: flex-start; justify-content: flex-start; }
+  .final-cta::after { right: var(--page-x); width: 60vw; height: 60vw; bottom: -30vw; }
+  .final-cta__content { padding: 22px 18px; }
+  .final-cta__button { width: 100%; }
   .footer__top { grid-template-columns: 1fr; }
   .footer__brand { grid-column: auto; }
   .footer__bottom { flex-direction: column; gap: 10px; line-height: 1.6; }

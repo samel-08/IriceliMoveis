@@ -124,6 +124,25 @@ const projectPhotos = projects.flatMap(project =>
 );
 
 const knownPhotoByUrl = new Map(projectPhotos.map(photo => [photo.image, photo]));
+const photoDetailsByFilename = {
+  "IMG-20260923-WA0034.jpg": { title: "Painel e marcenaria para sala", category: "Salas e painéis", alt: "Painel de madeira planejado em sala de estar" },
+  "IMG-20260923-WA0037.jpg": { title: "Gaveteiro sob medida", category: "Móveis e detalhes", alt: "Gaveteiro branco integrado a um móvel planejado" },
+  "IMG-20260923-WA0038.jpg": { title: "Móvel de apoio em madeira", category: "Móveis e detalhes", alt: "Móvel de apoio em madeira fotografado na oficina" },
+  "IMG-20260923-WA0039.jpg": { title: "Banco com encosto estofado", category: "Móveis e detalhes", alt: "Banco planejado com estrutura de madeira e assento estofado" },
+  "IMG-20260923-WA0041.jpg": { title: "Cozinha clara sob medida", category: "Cozinhas", alt: "Cozinha planejada clara com bancada e armários" },
+  "IMG-20260923-WA0043.jpg": { title: "Sala com painel e mobiliário", category: "Salas e painéis", alt: "Sala de estar com painel decorativo e mobiliário planejado" },
+  "IMG-20260923-WA0044.jpg": { title: "Quarto com armário planejado", category: "Quartos e armários", alt: "Quarto com armário aberto integrado à marcenaria" },
+  "IMG-20260923-WA0045.jpg": { title: "Adega comercial em madeira", category: "Adegas e comerciais", alt: "Adega comercial com prateleiras para garrafas" },
+  "IMG-20260923-WA0046.jpg": { title: "Exposição de vinhos sob medida", category: "Adegas e comerciais", alt: "Parede de adega com nichos de madeira e iluminação" },
+  "IMG-20260923-WA0047.jpg": { title: "Mesa e banco para jantar", category: "Móveis e detalhes", alt: "Conjunto de mesa e banco de madeira em sala de jantar" },
+  "IMG-20260923-WA0048.jpg": { title: "Bancada de trabalho", category: "Móveis e detalhes", alt: "Bancada sob medida em etapa de montagem" },
+  "IMG-20260923-WA0049.jpg": { title: "Painel de TV para sala", category: "Salas e painéis", alt: "Painel de TV e aparador integrados à sala" },
+  "IMG-20260923-WA0050.jpg": { title: "Gabinete para banheiro", category: "Banheiros", alt: "Gabinete de banheiro com cuba de apoio e espelheira" },
+  "IMG-20260923-WA0051.jpg": { title: "Adega com nichos iluminados", category: "Adegas e comerciais", alt: "Parede de adega com nichos para garrafas e iluminação" },
+  "IMG-20260923-WA0052.jpg": { title: "Mesa de jantar e banco", category: "Móveis e detalhes", alt: "Mesa de jantar com banco estofado e base de madeira" },
+  "IMG-20260923-WA0054.jpg": { title: "Móvel em produção", category: "Móveis e detalhes", alt: "Móvel sob medida em etapa de produção na oficina" },
+  "IMG-20260923-WA0071.jpg": { title: "Armário espelhado e penteadeira", category: "Quartos e armários", alt: "Armário planejado com espelho e bancada de penteadeira" },
+};
 
 // The wall can use every real project photo without hard-coding a stale list.
 // Curated projects retain their existing title and multi-photo gallery on click.
@@ -133,12 +152,13 @@ export const wallImages = Object.entries(wallAssetModules)
   .sort((first, second) => first.sourceName.localeCompare(second.sourceName))
   .map(({ sourceName, image }) => {
     const knownPhoto = knownPhotoByUrl.get(image);
+    const photoDetails = photoDetailsByFilename[sourceName];
     return knownPhoto ? { ...knownPhoto, sourceName } : {
       projectId: `portfolio-${sourceName}`,
-      title: "Projeto Iriceli",
-      category: "Marcenaria sob medida",
+      title: photoDetails?.title ?? "Detalhe de marcenaria",
+      category: photoDetails?.category ?? "Móveis e detalhes",
       image,
-      alt: "Projeto de marcenaria sob medida da Iriceli Móveis",
+      alt: photoDetails?.alt ?? "Projeto de marcenaria sob medida da Iriceli Móveis",
       objectPosition: "center",
       sourceName,
     };

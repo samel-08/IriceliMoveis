@@ -13,15 +13,52 @@
 .staggered-menu__header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 48px; }
 .staggered-menu__header img { display: block; width: min(140px, 40vw); height: 52px; object-fit: contain; }
 .staggered-menu__header button, .staggered-menu__trigger {
-  min-height: 44px; padding: 10px 12px; border: 1px solid #C9A55A;
-  color: #F4EBD0; background: #1F212E; font: inherit; font-size: 12px; cursor: pointer;
+  min-height: 44px; padding: 10px 12px;
+  color: #F4EBD0; font: inherit; font-size: 12px; cursor: pointer;
 }
+.staggered-menu__header button {
+  padding-inline: 4px;
+  border: 0;
+  background: transparent;
+  transition: color 180ms ease;
+}
+.staggered-menu__header button:hover { color: #E7D59C; }
+.staggered-menu__trigger { border: 1px solid #C9A55A; background: #1F212E; }
 .staggered-menu nav { display: grid; gap: 12px; }
 .staggered-menu__item { display: flex; align-items: baseline; gap: 16px; padding: 12px 0; font-family: var(--font-serif, Georgia, serif); font-size: clamp(28px, 7vw, 44px); color: #F4EBD0; text-decoration: none; }
 .staggered-menu__item span { font: 11px sans-serif; color: #C9A55A; }
 .staggered-menu__item[aria-current="location"] { color: var(--gold-light); }
-.staggered-menu__cta { margin-top: 36px; font: inherit; font-size: 14px; color: #C9A55A; border-top: 1px solid #C9A55A; }
+.staggered-menu__cta {
+  width: max-content;
+  min-height: 44px;
+  margin-top: 28px;
+  padding-block: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font: inherit;
+  font-size: 14px;
+  color: #C9A55A;
+  transition: color 180ms ease;
+}
+.staggered-menu__cta::after { content: "↗"; font-size: 16px; transition: transform 180ms ease; }
+@media (hover: hover) and (pointer: fine) {
+  .staggered-menu__cta:hover { color: #E7D59C; }
+  .staggered-menu__cta:hover::after { transform: translate(3px, -2px); }
+}
 .staggered-menu a:focus-visible, .staggered-menu button:focus-visible, .staggered-menu__trigger:focus-visible { outline: 2px solid #C9A55A; outline-offset: 4px; }
 @media (max-width: 1024px) {
-  .staggered-menu__trigger { display: inline-flex; align-items: center; gap: 12px; justify-self: end; grid-column: -2 / -1; grid-row: 1; }
+  .staggered-menu__trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-self: end;
+    grid-column: -2 / -1;
+    grid-row: 1;
+    gap: 9px;
+    padding-inline: 8px 4px;
+    border: 0;
+    background: transparent;
+  }
+
+  .staggered-menu__trigger span { color: #E7D59C; font-size: 16px; line-height: 1; }
 }

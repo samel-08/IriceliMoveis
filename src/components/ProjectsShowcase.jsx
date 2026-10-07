@@ -68,6 +68,13 @@ export default function ProjectsShowcase() {
         />
       </div>
 
+      <div className="projects-showcase__more">
+        <p>Veja outros ambientes e detalhes feitos sob medida.</p>
+        <a href="#fotos" aria-label="Abrir a galeria com mais fotos">
+          Mais fotos <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
       <AnimatePresence>
         {selectedProject && <ProjectLightbox project={selectedProject} initialPhotoSrc={selectedWallItem.image} onClose={() => setSelectedWallItem(null)} />}
       </AnimatePresence>
