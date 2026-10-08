@@ -1,28 +1,29 @@
-import stairs from "../assets/brand/1000369156.jpg";
-import geometricPanel from "../assets/brand/1000369158.jpg";
-import drawers from "../assets/brand/1000369160.jpg";
-import roundTable from "../assets/brand/1000369162.jpg";
-import woodOffice from "../assets/brand/1000369164.jpg";
-import slattedPanel from "../assets/brand/20250203_171113.jpg";
-import kitchenIsland from "../assets/brand/20250725_171632.jpg";
-import kitchenWide from "../assets/brand/20250725_171702.jpg";
-import kitchenCounter from "../assets/brand/20250725_171759.jpg";
-import kitchenSink from "../assets/brand/20250725_171806.jpg";
-import wineDisplay from "../assets/brand/20251013_110821.jpg";
-import woodTVPanel from "../assets/brand/20251013_114612.jpg";
-import whiteKitchen from "../assets/brand/20260515_151254.jpg";
-import woodDoor from "../assets/brand/IMG-20241127-WA0003.jpg";
-import slattedPanelWide from "../assets/brand/IMG-20250203-WA0049.jpeg";
-import kitchenOverview from "../assets/brand/IMG-20250725-WA0027.jpg";
-import kitchenDetail from "../assets/brand/IMG-20250725-WA0030.jpg";
-import glassCabinet from "../assets/brand/Screenshot_20260910_200854_Instagram.jpg";
 import { whatsappLink } from "../data/site";
 
-const wallAssetModules = import.meta.glob("../assets/brand/*.{jpg,jpeg,png}", {
+const optimizedAssetModules = import.meta.glob("../assets/brand-optimized/*.webp", {
   eager: true,
   import: "default",
   query: "?url",
 });
+const optimizedPhoto = sourceName => optimizedAssetModules[`../assets/brand-optimized/${sourceName}.webp`];
+const stairs = optimizedPhoto("1000369156.jpg");
+const geometricPanel = optimizedPhoto("1000369158.jpg");
+const drawers = optimizedPhoto("1000369160.jpg");
+const roundTable = optimizedPhoto("1000369162.jpg");
+const woodOffice = optimizedPhoto("1000369164.jpg");
+const slattedPanel = optimizedPhoto("20250203_171113.jpg");
+const kitchenIsland = optimizedPhoto("20250725_171632.jpg");
+const kitchenWide = optimizedPhoto("20250725_171702.jpg");
+const kitchenCounter = optimizedPhoto("20250725_171759.jpg");
+const kitchenSink = optimizedPhoto("20250725_171806.jpg");
+const wineDisplay = optimizedPhoto("20251013_110821.jpg");
+const woodTVPanel = optimizedPhoto("20251013_114612.jpg");
+const whiteKitchen = optimizedPhoto("20260515_151254.jpg");
+const woodDoor = optimizedPhoto("IMG-20241127-WA0003.jpg");
+const slattedPanelWide = optimizedPhoto("IMG-20250203-WA0049.jpeg");
+const kitchenOverview = optimizedPhoto("IMG-20250725-WA0027.jpg");
+const kitchenDetail = optimizedPhoto("IMG-20250725-WA0030.jpg");
+const glassCabinet = optimizedPhoto("Screenshot_20260910_200854_Instagram.jpg");
 const nonPhotoWallAssets = new Set([
   "logo.jpg",
   "logo_leao.png",
@@ -146,8 +147,8 @@ const photoDetailsByFilename = {
 
 // The wall can use every real project photo without hard-coding a stale list.
 // Curated projects retain their existing title and multi-photo gallery on click.
-export const wallImages = Object.entries(wallAssetModules)
-  .map(([path, image]) => ({ sourceName: path.split("/").at(-1), image }))
+export const wallImages = Object.entries(optimizedAssetModules)
+  .map(([path, image]) => ({ sourceName: path.split("/").at(-1).replace(/\.webp$/i, ""), image }))
   .filter(({ sourceName }) => !nonPhotoWallAssets.has(sourceName))
   .sort((first, second) => first.sourceName.localeCompare(second.sourceName))
   .map(({ sourceName, image }) => {

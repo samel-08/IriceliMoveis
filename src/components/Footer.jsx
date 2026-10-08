@@ -1,7 +1,7 @@
 import BackToTop from "./BackToTop";
 import FoldText from "./effects/FoldText";
 import { navigation, phoneLabel, whatsappLink } from "../data/site";
-import logoLion from "../assets/brand/logo_leao.png";
+import logoLion from "../assets/brand-optimized/logo_leao.png.webp";
 
 export default function Footer() {
   return (

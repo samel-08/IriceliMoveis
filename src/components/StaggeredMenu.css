@@ -40,11 +40,11 @@
   font-size: 14px;
   color: #C9A55A;
   transition: color 180ms ease;
+  border-top: 0;
 }
-.staggered-menu__cta::after { content: "↗"; font-size: 16px; transition: transform 180ms ease; }
+.staggered-menu__cta .secondary-link__icon { font-size: 16px; }
 @media (hover: hover) and (pointer: fine) {
   .staggered-menu__cta:hover { color: #E7D59C; }
-  .staggered-menu__cta:hover::after { transform: translate(3px, -2px); }
 }
 .staggered-menu a:focus-visible, .staggered-menu button:focus-visible, .staggered-menu__trigger:focus-visible { outline: 2px solid #C9A55A; outline-offset: 4px; }
 @media (max-width: 1024px) {

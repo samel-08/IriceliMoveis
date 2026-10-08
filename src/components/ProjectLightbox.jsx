@@ -111,8 +111,8 @@ export default function ProjectLightbox({ project, initialPhotoSrc, onClose }) {
               ))}
             </div>}
 
-            <a className="project-lightbox__cta" href={project.cta.href} target="_blank" rel="noreferrer">
-              Quero um projeto parecido <span aria-hidden="true">↗</span>
+            <a className="project-lightbox__cta secondary-link" href={project.cta.href} target="_blank" rel="noreferrer">
+              Quero um projeto parecido <span className="secondary-link__icon" aria-hidden="true">↗</span>
             </a>
           </div>
         </div>

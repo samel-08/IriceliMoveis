@@ -1,9 +1,10 @@
 import { AnimatePresence } from "motion/react";
-import { useLayoutEffect, useRef, useState } from "react";
+import { lazy, Suspense, useLayoutEffect, useRef, useState } from "react";
 import { whatsappLink } from "../data/site";
-import ProjectLightbox from "./ProjectLightbox";
 import { projects, wallImages } from "./projectsImages";
 import "./GalleryPage.css";
+
+const ProjectLightbox = lazy(() => import("./ProjectLightbox"));
 
 const pageSize = 24;
 const categoryAliases = {
@@ -78,8 +79,8 @@ export default function GalleryPage() {
         <a className="photo-gallery__brand" href="#top" aria-label="Voltar ao início da Iriceli Móveis">
           IRICELI <span>MÓVEIS</span>
         </a>
-        <a className="photo-gallery__back" href="#top">
-          <span aria-hidden="true">←</span> Voltar ao site
+        <a className="photo-gallery__back secondary-link secondary-link--sentence" href="#top">
+          <span className="secondary-link__icon" aria-hidden="true">←</span> Voltar ao site
         </a>
       </header>
 
@@ -137,7 +138,7 @@ export default function GalleryPage() {
         </div>
 
         {visibleCount < filteredPhotos.length && (
-          <button className="photo-gallery__load-more" type="button" onClick={() => setVisibleCount(count => count + pageSize)}>
+          <button className="photo-gallery__load-more secondary-link" type="button" onClick={() => setVisibleCount(count => count + pageSize)}>
             Carregar mais fotos <span aria-hidden="true">↓</span>
           </button>
         )}
@@ -145,16 +146,18 @@ export default function GalleryPage() {
 
       <section className="photo-gallery__contact" aria-label="Solicitar um projeto">
         <p>Tem um ambiente em mente?</p>
-        <a href={whatsappLink()} target="_blank" rel="noreferrer">Vamos conversar <span aria-hidden="true">↗</span></a>
+        <a className="secondary-link" href={whatsappLink()} target="_blank" rel="noreferrer">Vamos conversar <span className="secondary-link__icon" aria-hidden="true">↗</span></a>
       </section>
 
       <AnimatePresence>
         {selectedProject && (
-          <ProjectLightbox
-            project={selectedProject}
-            initialPhotoSrc={selectedPhoto.image}
-            onClose={() => setSelectedPhoto(null)}
-          />
+          <Suspense fallback={null}>
+            <ProjectLightbox
+              project={selectedProject}
+              initialPhotoSrc={selectedPhoto.image}
+              onClose={() => setSelectedPhoto(null)}
+            />
+          </Suspense>
         )}
       </AnimatePresence>
     </main>

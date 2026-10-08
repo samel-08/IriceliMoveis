@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import gsap from "gsap";
-import logoLion from "../assets/brand/logo_leao.png";
+import logoLion from "../assets/brand-optimized/logo_leao.png.webp";
 import "./StaggeredMenu.css";
 import { navigation } from "../data/site";
 
@@ -67,7 +67,9 @@ export default function StaggeredMenu({ activeSection }) {
               <span aria-hidden="true">0{index + 1}</span>{label}
             </a>)}
           </nav>
-          <a className="staggered-menu__item staggered-menu__cta" href="#contato" onClick={() => setOpen(false)}>Solicitar orçamento</a>
+          <a className="staggered-menu__item staggered-menu__cta secondary-link secondary-link--sentence" href="#contato" onClick={() => setOpen(false)}>
+            Solicitar orçamento <span className="secondary-link__icon" aria-hidden="true">↗</span>
+          </a>
         </div>
       </dialog>, document.body,
     )}

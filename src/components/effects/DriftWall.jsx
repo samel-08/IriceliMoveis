@@ -178,8 +178,12 @@ const DriftWall = ({
     trackRefs.current.forEach((el, c) => {
       if (el) el.style.transform = `translate3d(0, ${-(offsetsRef.current[c] ?? 0)}px, 0)`;
     });
-    if (reduced || paused || !inView || !documentVisible || !containerWidth || !items.length) return;
+    if (reduced || window.matchMedia("(max-width: 600px)").matches || paused || !inView || !documentVisible || !containerWidth || !items.length) return;
     const animate = ts => {
+      if (lastTsRef.current !== null && ts - lastTsRef.current < 1000 / 30) {
+        rafRef.current = requestAnimationFrame(animate);
+        return;
+      }
       if (lastTsRef.current === null) lastTsRef.current = ts;
       const dt = Math.min(0.05, Math.max(0, ts - lastTsRef.current) / 1000);
       lastTsRef.current = ts;
@@ -233,6 +237,7 @@ const DriftWall = ({
 
   const handlePointerMove = useCallback(
     e => {
+      if (window.matchMedia("(pointer: coarse)").matches) return;
       const rect = containerRef.current?.getBoundingClientRect();
       if (!rect) return;
       if (parallax > 0 && !reduced) {

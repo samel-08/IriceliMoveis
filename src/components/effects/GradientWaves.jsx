@@ -47,9 +47,9 @@ export default function GradientWaves({ className = "", horizonColor, waveColor,
     container.appendChild(canvas);
     const resize = () => { const box = container.getBoundingClientRect(); renderer.setSize(Math.max(1, box.width), Math.max(1, box.height)); program.uniforms.uResolution.value.set([gl.drawingBufferWidth, gl.drawingBufferHeight]); };
     const observer = new ResizeObserver(resize); observer.observe(container); resize();
-    let frame = 0; let visible = true;
+    let frame = 0; let visible = true; let lastRenderTime = 0;
     const intersection = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }); intersection.observe(container);
-    const draw = now => { if (visible && !document.hidden) { program.uniforms.uTime.value = now / 1000; renderer.render({ scene: mesh }); } frame = requestAnimationFrame(draw); };
+    const draw = now => { if (visible && !document.hidden && now - lastRenderTime >= 1000 / 30) { lastRenderTime = now; program.uniforms.uTime.value = now / 1000; renderer.render({ scene: mesh }); } frame = requestAnimationFrame(draw); };
     frame = requestAnimationFrame(draw);
     return () => { cancelAnimationFrame(frame); observer.disconnect(); intersection.disconnect(); canvas.remove(); gl.getExtension("WEBGL_lose_context")?.loseContext(); };
   }, [horizonColor, waveColor, crestColor, opacity]);

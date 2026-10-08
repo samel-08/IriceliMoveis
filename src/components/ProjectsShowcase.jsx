@@ -1,12 +1,22 @@
 import { AnimatePresence } from "motion/react";
-import { useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { whatsappLink } from "../data/site";
-import ProjectLightbox from "./ProjectLightbox";
 import DriftWall from "./effects/DriftWall";
-import { projects, wallImages } from "./projectsImages";
+import { projects, projectImages, wallImages } from "./projectsImages";
+
+const ProjectLightbox = lazy(() => import("./ProjectLightbox"));
 
 export default function ProjectsShowcase() {
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia("(max-width: 600px)").matches);
   const [selectedWallItem, setSelectedWallItem] = useState(null);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 600px)");
+    const syncViewport = () => setIsMobile(media.matches);
+    media.addEventListener("change", syncViewport);
+    return () => media.removeEventListener("change", syncViewport);
+  }, []);
+
   const selectedProject = selectedWallItem && (
     projects.find(project => project.id === selectedWallItem.projectId) ?? {
       id: selectedWallItem.projectId,
@@ -42,7 +52,7 @@ export default function ProjectsShowcase() {
 
       <div className="projects-showcase__wall">
         <DriftWall
-            items={wallImages}
+            items={isMobile ? projectImages : wallImages}
             columns={7}
             tileWidth={250}
             tileHeight={145}
@@ -70,13 +80,13 @@ export default function ProjectsShowcase() {
 
       <div className="projects-showcase__more">
         <p>Veja outros ambientes e detalhes feitos sob medida.</p>
-        <a href="#fotos" aria-label="Abrir a galeria com mais fotos">
-          Mais fotos <span aria-hidden="true">↗</span>
+        <a className="secondary-link" href="#fotos" aria-label="Abrir a galeria com mais fotos">
+          Mais fotos <span className="secondary-link__icon" aria-hidden="true">↗</span>
         </a>
       </div>
 
       <AnimatePresence>
-        {selectedProject && <ProjectLightbox project={selectedProject} initialPhotoSrc={selectedWallItem.image} onClose={() => setSelectedWallItem(null)} />}
+        {selectedProject && <Suspense fallback={null}><ProjectLightbox project={selectedProject} initialPhotoSrc={selectedWallItem.image} onClose={() => setSelectedWallItem(null)} /></Suspense>}
       </AnimatePresence>
     </section>
   );

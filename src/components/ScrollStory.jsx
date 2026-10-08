@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import BrandIntro from "./BrandIntro";
 import PearlButton from "./PearlButton";
+import storyRealityPhoto from "../assets/brand-optimized/IMG-20250725-WA0027.jpg.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,6 +21,7 @@ export default function ScrollStory() {
       reduced: "(prefers-reduced-motion: reduce)",
     }, ({ conditions }) => {
       const { mobile, reduced } = conditions;
+      if (mobile) return;
       const desktop = conditions.desktop || conditions.landscape;
       const cabinet = cabinetRef.current;
       // Pixel destinations derive from the bounded stage, including ultrawide screens.
@@ -351,11 +353,100 @@ export default function ScrollStory() {
       }
     }, storyRef);
 
+    mm.add("(max-width: 600px)", () => {
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (reducedMotion) {
+        gsap.set(".mobile-story__photo", { clipPath: "inset(0%)", opacity: 0.32 });
+        gsap.set(".mobile-story__caption--idea, .mobile-story__caption--measure, .mobile-story__caption--project, .mobile-story__caption--reality", { autoAlpha: 0 });
+        gsap.set(".mobile-story__caption--ending", { autoAlpha: 1 });
+        return;
+      }
+
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: storyRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 0.35,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      timeline
+        .fromTo(".mobile-story__plan-line--horizontal", { scaleX: 0 }, { scaleX: 1, duration: 1, stagger: 0.14, ease: "none" }, 0)
+        .fromTo(".mobile-story__plan-line--vertical", { scaleY: 0 }, { scaleY: 1, duration: 0.9, stagger: 0.12, ease: "none" }, 0.15)
+        .to(".mobile-story__caption--idea", { autoAlpha: 0, y: -12, duration: 0.35, ease: "none" }, 1.15)
+        .to(".mobile-story__caption--measure", { autoAlpha: 1, y: 0, duration: 0.35, ease: "none" }, 1.5)
+        .fromTo(".mobile-story__measure-progress", { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: "none" }, 1.5)
+        .fromTo(".mobile-story__cabinet-line--horizontal", { scaleX: 0 }, { scaleX: 1, duration: 0.85, stagger: 0.12, ease: "none" }, 2.8)
+        .fromTo(".mobile-story__cabinet-line--vertical", { scaleY: 0 }, { scaleY: 1, duration: 0.8, stagger: 0.12, ease: "none" }, 2.95)
+        .to(".mobile-story__caption--measure", { autoAlpha: 0, y: -10, duration: 0.3, ease: "none" }, 2.85)
+        .to(".mobile-story__caption--project", { autoAlpha: 1, y: 0, duration: 0.35, ease: "none" }, 3.1)
+        .to(".mobile-story__caption--project", { autoAlpha: 0, y: -10, duration: 0.3, ease: "none" }, 4.35)
+        .fromTo(".mobile-story__photo", { clipPath: "inset(50% 0 50%)", scale: 0.96 }, { clipPath: "inset(0% 0 0%)", scale: 1, duration: 1.35, ease: "none" }, 4.5)
+        .to(".mobile-story__drawing", { opacity: 0, duration: 1.4, ease: "none" }, 5.6)
+        .to(".mobile-story__caption--reality", { autoAlpha: 1, y: 0, duration: 0.45, ease: "none" }, 5.45)
+        .to(".mobile-story__caption--reality", { autoAlpha: 0, y: -10, duration: 0.3, ease: "none" }, 6.2)
+        .to(".mobile-story__caption--ending", { autoAlpha: 1, y: 0, duration: 0.5, ease: "none" }, 6.2)
+        .to(".mobile-story__photo", { clipPath: "inset(100% 0 0%)", opacity: 0.2, duration: 1.1, ease: "none" }, 9)
+        .to(".mobile-story__caption--ending", { autoAlpha: 0, y: 12, duration: 0.7, ease: "none" }, 9.1)
+        .to(".mobile-story__stage", { backgroundColor: "#10131d", duration: 0.7, ease: "none" }, 9.2);
+    }, storyRef);
+
     return () => mm.revert();
   }, []);
 
   return (
     <section className="scroll-story" ref={storyRef}>
+      <div className="mobile-story" aria-label="Do projeto à realidade">
+        <div className="mobile-story__stage">
+          <div className="mobile-story__grid" aria-hidden="true" />
+          <div className="mobile-story__drawing" aria-hidden="true">
+            <span className="mobile-story__plan-line mobile-story__plan-line--horizontal mobile-story__plan-line--top" />
+            <span className="mobile-story__plan-line mobile-story__plan-line--horizontal mobile-story__plan-line--bottom" />
+            <span className="mobile-story__plan-line mobile-story__plan-line--vertical mobile-story__plan-line--left" />
+            <span className="mobile-story__plan-line mobile-story__plan-line--vertical mobile-story__plan-line--right" />
+            <span className="mobile-story__measure-progress" />
+            <span className="mobile-story__dimension-label">3200 mm</span>
+            <span className="mobile-story__cabinet-line mobile-story__cabinet-line--horizontal mobile-story__cabinet-line--cabinet-top" />
+            <span className="mobile-story__cabinet-line mobile-story__cabinet-line--horizontal mobile-story__cabinet-line--cabinet-base" />
+            <span className="mobile-story__cabinet-line mobile-story__cabinet-line--vertical mobile-story__cabinet-line--cabinet-left" />
+            <span className="mobile-story__cabinet-line mobile-story__cabinet-line--vertical mobile-story__cabinet-line--cabinet-right" />
+            <span className="mobile-story__cabinet-line mobile-story__cabinet-line--horizontal mobile-story__cabinet-line--shelf-one" />
+            <span className="mobile-story__cabinet-line mobile-story__cabinet-line--horizontal mobile-story__cabinet-line--shelf-two" />
+            <span className="mobile-story__cabinet-line mobile-story__cabinet-line--vertical mobile-story__cabinet-line--division-one" />
+            <span className="mobile-story__cabinet-line mobile-story__cabinet-line--vertical mobile-story__cabinet-line--division-two" />
+          </div>
+
+          <div className="mobile-story__photo">
+            <img src={storyRealityPhoto} alt="Cozinha planejada com ilha central em madeira e armários sob medida" loading="lazy" decoding="async" />
+          </div>
+
+          <div className="mobile-story__caption mobile-story__caption--idea">
+            <span>01 / IDEIA</span>
+            <strong>Antes da madeira<br />existe uma ideia.</strong>
+          </div>
+          <div className="mobile-story__caption mobile-story__caption--measure">
+            <span>02 / MEDIDA</span>
+            <strong>Tudo começa<br />pela medida.</strong>
+          </div>
+          <div className="mobile-story__caption mobile-story__caption--project">
+            <span>03 / PROJETO</span>
+            <strong>Desenhado para<br />o seu espaço.</strong>
+          </div>
+          <div className="mobile-story__caption mobile-story__caption--reality">
+            <span>04 / REALIDADE</span>
+            <strong>Feito para o seu espaço.</strong>
+          </div>
+          <div className="mobile-story__caption mobile-story__caption--ending">
+            <span>IRICELI MÓVEIS</span>
+            <strong>Do projeto<br />à realidade.</strong>
+          </div>
+          <span className="mobile-story__drawing-note" aria-hidden="true">ESTUDO · MARCENARIA SOB MEDIDA</span>
+        </div>
+      </div>
+
       {/* ========================================
           ARMÁRIO STICKY
       ======================================== */}
@@ -445,8 +536,8 @@ export default function ScrollStory() {
               Solicitar orçamento
             </PearlButton>
 
-            <a href="#projetos" className="button-link">
-              Explorar projetos ↓
+            <a href="#projetos" className="button-link secondary-link">
+              Explorar projetos <span className="secondary-link__icon" aria-hidden="true">↓</span>
             </a>
           </div>
         </div>
