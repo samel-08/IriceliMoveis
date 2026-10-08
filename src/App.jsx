@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import ScrollStory from "./components/ScrollStory";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
+import BrandOpening from "./components/BrandOpening";
 import ProjectsShowcase from "./components/ProjectsShowcase";
 import CraftSections from "./components/CraftSections";
 const GalleryPage = lazy(() => import("./components/GalleryPage"));
@@ -36,6 +37,7 @@ function App() {
 
       {isGalleryPage ? <Suspense fallback={null}><GalleryPage /></Suspense> : <>
         <div id="top" />
+        <BrandOpening />
         <Navbar />
         <main>
           <ScrollStory />

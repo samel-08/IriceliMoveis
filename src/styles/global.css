@@ -1031,8 +1031,8 @@ button { font: inherit; }
     transform-origin: left center;
     box-shadow: 0 0 8px rgba(201, 165, 90, .12);
   }
-  .mobile-story__plan-line--horizontal, .mobile-story__cabinet-line--horizontal { height: 1px; }
-  .mobile-story__plan-line--vertical, .mobile-story__cabinet-line--vertical { width: 1px; transform-origin: center top; }
+  .mobile-story__plan-line--horizontal, .mobile-story__cabinet-line--horizontal { height: 1px; transform: scaleX(0); }
+  .mobile-story__plan-line--vertical, .mobile-story__cabinet-line--vertical { width: 1px; transform: scaleY(0); transform-origin: center top; }
   .mobile-story__plan-line--top { top: 8%; left: 4%; right: 4%; }
   .mobile-story__plan-line--bottom { bottom: 8%; left: 4%; right: 4%; }
   .mobile-story__plan-line--left { top: 8%; bottom: 8%; left: 4%; }
